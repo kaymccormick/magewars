@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gameserver" default="compile.module.gameserver">
+  <dirname property="module.gameserver.basedir" file="${ant.file.module_gameserver}"/>
+  
+  <property name="module.jdk.home.gameserver" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gameserver" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gameserver" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gameserver" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="gameserver.output.dir" value="${module.gameserver.basedir}/../out/production/gameserver"/>
+  <property name="gameserver.testoutput.dir" value="${module.gameserver.basedir}/../out/test/gameserver"/>
+  
+  <path id="gameserver.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gameserver.module.production.classpath">
+    <path refid="${module.jdk.classpath.gameserver}"/>
+    <path refid="library.spring-hateoas-0.7.0.release.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <path refid="library.javax.xml.bind:jaxb-api:2.2.3.classpath"/>
+    <path refid="library.org.mockito:mockito-all:1.9.5.classpath"/>
+    <path refid="library.servlet-api.classpath"/>
+    <path refid="library.tomcat-src.classpath"/>
+    <path refid="library.jackson-annotations-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-core-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-databind-2.4.0-snapshot.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-core-asl:1.9.12.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-mapper-asl:1.9.12.classpath"/>
+    <path refid="library.jersey-common.classpath"/>
+    <path refid="library.jersey-server.classpath"/>
+    <path refid="library.jersey-media-moxy-2.7.classpath"/>
+    <path refid="library.javax.annotation-api-1.2.classpath"/>
+    <path refid="library.javax.ws.rs-api-2.01.classpath"/>
+    <path refid="library.hk2-api-2.2.0.classpath"/>
+    <path refid="library.hk2-locator-2.2.0.classpath"/>
+    <path refid="library.osgi-resource-locator-1.0.1.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.jersey-guava-2.7.classpath"/>
+    <path refid="library.jaxb-api-2.2.7.classpath"/>
+    <path refid="library.org.osgi.core-4.2.0.classpath"/>
+    <path refid="library.hk2-utils-2.2.0.classpath"/>
+    <path refid="library.aopalliance-repackaged-2.2.0.classpath"/>
+    <path refid="library.javassist-3.18.1-ga.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.jersey-client.classpath"/>
+    <path refid="library.asm-all-repackaged-2.2.0.classpath"/>
+    <path refid="library.javax.servlet-api-3.0.1.classpath"/>
+    <path refid="library.jersey-container-servlet-core.classpath"/>
+    <path refid="library.jersey-entity-filtering-2.7.classpath"/>
+    <path refid="library.org.eclipse.persistence.antlr-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.moxy-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.asm-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.core-2.5.0.classpath"/>
+    <path refid="library.jersey-spring3-2.7.classpath"/>
+    <path refid="library.spring-bridge-2.2.0.classpath"/>
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="gameserver.runtime.production.module.classpath">
+    <pathelement location="${gameserver.output.dir}"/>
+    <path refid="library.spring-hateoas-0.7.0.release.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <path refid="library.javax.xml.bind:jaxb-api:2.2.3.classpath"/>
+    <path refid="library.org.mockito:mockito-all:1.9.5.classpath"/>
+    <path refid="library.servlet-api.classpath"/>
+    <path refid="library.tomcat-src.classpath"/>
+    <path refid="library.jackson-annotations-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-core-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-databind-2.4.0-snapshot.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-core-asl:1.9.12.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-mapper-asl:1.9.12.classpath"/>
+    <path refid="library.jersey-common.classpath"/>
+    <path refid="library.jersey-server.classpath"/>
+    <path refid="library.jersey-media-moxy-2.7.classpath"/>
+    <path refid="library.javax.annotation-api-1.2.classpath"/>
+    <path refid="library.javax.ws.rs-api-2.01.classpath"/>
+    <path refid="library.hk2-api-2.2.0.classpath"/>
+    <path refid="library.hk2-locator-2.2.0.classpath"/>
+    <path refid="library.osgi-resource-locator-1.0.1.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.jersey-guava-2.7.classpath"/>
+    <path refid="library.jaxb-api-2.2.7.classpath"/>
+    <path refid="library.org.osgi.core-4.2.0.classpath"/>
+    <path refid="library.hk2-utils-2.2.0.classpath"/>
+    <path refid="library.aopalliance-repackaged-2.2.0.classpath"/>
+    <path refid="library.javassist-3.18.1-ga.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.jersey-client.classpath"/>
+    <path refid="library.asm-all-repackaged-2.2.0.classpath"/>
+    <path refid="library.javax.servlet-api-3.0.1.classpath"/>
+    <path refid="library.jersey-container-servlet-core.classpath"/>
+    <path refid="library.jersey-entity-filtering-2.7.classpath"/>
+    <path refid="library.org.eclipse.persistence.antlr-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.moxy-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.asm-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.core-2.5.0.classpath"/>
+    <path refid="library.jersey-spring3-2.7.classpath"/>
+    <path refid="library.spring-bridge-2.2.0.classpath"/>
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.jul-to-slf4j-1.7.6.classpath"/>
+  </path>
+  
+  <path id="gameserver.module.classpath">
+    <path refid="${module.jdk.classpath.gameserver}"/>
+    <pathelement location="${gameserver.output.dir}"/>
+    <path refid="library.spring-hateoas-0.7.0.release.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <path refid="library.javax.xml.bind:jaxb-api:2.2.3.classpath"/>
+    <path refid="library.org.mockito:mockito-all:1.9.5.classpath"/>
+    <path refid="library.servlet-api.classpath"/>
+    <path refid="library.tomcat-src.classpath"/>
+    <path refid="library.jackson-annotations-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-core-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-databind-2.4.0-snapshot.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-core-asl:1.9.12.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-mapper-asl:1.9.12.classpath"/>
+    <path refid="library.jersey-common.classpath"/>
+    <path refid="library.jersey-server.classpath"/>
+    <path refid="library.jersey-media-moxy-2.7.classpath"/>
+    <path refid="library.javax.annotation-api-1.2.classpath"/>
+    <path refid="library.javax.ws.rs-api-2.01.classpath"/>
+    <path refid="library.hk2-api-2.2.0.classpath"/>
+    <path refid="library.hk2-locator-2.2.0.classpath"/>
+    <path refid="library.osgi-resource-locator-1.0.1.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.jersey-guava-2.7.classpath"/>
+    <path refid="library.jaxb-api-2.2.7.classpath"/>
+    <path refid="library.org.osgi.core-4.2.0.classpath"/>
+    <path refid="library.hk2-utils-2.2.0.classpath"/>
+    <path refid="library.aopalliance-repackaged-2.2.0.classpath"/>
+    <path refid="library.javassist-3.18.1-ga.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.jersey-client.classpath"/>
+    <path refid="library.asm-all-repackaged-2.2.0.classpath"/>
+    <path refid="library.javax.servlet-api-3.0.1.classpath"/>
+    <path refid="library.jersey-container-servlet-core.classpath"/>
+    <path refid="library.jersey-entity-filtering-2.7.classpath"/>
+    <path refid="library.org.eclipse.persistence.antlr-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.moxy-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.asm-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.core-2.5.0.classpath"/>
+    <path refid="library.jersey-spring3-2.7.classpath"/>
+    <path refid="library.spring-bridge-2.2.0.classpath"/>
+    <pathelement location="${gameservice.testoutput.dir}"/>
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="gameserver.runtime.module.classpath">
+    <pathelement location="${gameserver.testoutput.dir}"/>
+    <pathelement location="${gameserver.output.dir}"/>
+    <path refid="library.spring-hateoas-0.7.0.release.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <path refid="library.javax.xml.bind:jaxb-api:2.2.3.classpath"/>
+    <path refid="library.org.mockito:mockito-all:1.9.5.classpath"/>
+    <path refid="library.servlet-api.classpath"/>
+    <path refid="library.tomcat-src.classpath"/>
+    <path refid="library.jackson-annotations-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-core-2.4.0-snapshot.classpath"/>
+    <path refid="library.jackson-databind-2.4.0-snapshot.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-core-asl:1.9.12.classpath"/>
+    <path refid="library.org.codehaus.jackson:jackson-mapper-asl:1.9.12.classpath"/>
+    <path refid="library.jersey-common.classpath"/>
+    <path refid="library.jersey-server.classpath"/>
+    <path refid="library.jersey-media-moxy-2.7.classpath"/>
+    <path refid="library.javax.annotation-api-1.2.classpath"/>
+    <path refid="library.javax.ws.rs-api-2.01.classpath"/>
+    <path refid="library.hk2-api-2.2.0.classpath"/>
+    <path refid="library.hk2-locator-2.2.0.classpath"/>
+    <path refid="library.osgi-resource-locator-1.0.1.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.jersey-guava-2.7.classpath"/>
+    <path refid="library.jaxb-api-2.2.7.classpath"/>
+    <path refid="library.org.osgi.core-4.2.0.classpath"/>
+    <path refid="library.hk2-utils-2.2.0.classpath"/>
+    <path refid="library.aopalliance-repackaged-2.2.0.classpath"/>
+    <path refid="library.javassist-3.18.1-ga.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.jersey-client.classpath"/>
+    <path refid="library.asm-all-repackaged-2.2.0.classpath"/>
+    <path refid="library.javax.servlet-api-3.0.1.classpath"/>
+    <path refid="library.jersey-container-servlet-core.classpath"/>
+    <path refid="library.jersey-entity-filtering-2.7.classpath"/>
+    <path refid="library.org.eclipse.persistence.antlr-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.moxy-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.asm-2.5.0.classpath"/>
+    <path refid="library.org.eclipse.persistence.core-2.5.0.classpath"/>
+    <path refid="library.jersey-spring3-2.7.classpath"/>
+    <path refid="library.spring-bridge-2.2.0.classpath"/>
+    <pathelement location="${gameservice.testoutput.dir}"/>
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.jul-to-slf4j-1.7.6.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gameserver">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gameserver">
+    <patternset refid="excluded.from.module.gameserver"/>
+  </patternset>
+  
+  <path id="gameserver.module.sourcepath">
+    <dirset dir="${module.gameserver.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="gameserver.module.test.sourcepath">
+    <dirset dir="${module.gameserver.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gameserver" depends="compile.module.gameserver.production,compile.module.gameserver.tests" description="Compile module gameserver"/>
+  
+  <target name="compile.module.gameserver.production" depends="compile.module.gameservice" description="Compile module gameserver; production classes">
+    <mkdir dir="${gameserver.output.dir}"/>
+    <javac destdir="${gameserver.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gameserver}/javac">
+      <compilerarg line="${compiler.args.gameserver}"/>
+      <bootclasspath refid="gameserver.module.bootclasspath"/>
+      <classpath refid="gameserver.module.production.classpath"/>
+      <src refid="gameserver.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gameserver"/>
+    </javac>
+    
+    <copy todir="${gameserver.output.dir}">
+      <fileset dir="${module.gameserver.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gameserver.tests" depends="compile.module.gameserver.production" description="compile module gameserver; test classes" unless="skip.tests">
+    <mkdir dir="${gameserver.testoutput.dir}"/>
+    <javac destdir="${gameserver.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gameserver}/javac">
+      <compilerarg line="${compiler.args.gameserver}"/>
+      <bootclasspath refid="gameserver.module.bootclasspath"/>
+      <classpath refid="gameserver.module.classpath"/>
+      <src refid="gameserver.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gameserver"/>
+    </javac>
+    
+    <copy todir="${gameserver.testoutput.dir}">
+      <fileset dir="${module.gameserver.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.gameserver" description="cleanup module">
+    <delete dir="${gameserver.output.dir}"/>
+    <delete dir="${gameserver.testoutput.dir}"/>
+  </target>
+</project>

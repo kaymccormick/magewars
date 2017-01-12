@@ -1,0 +1,20 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+<g:DialogBox autoHide="true" modal="true">
+    <g:caption><b>Create Game</b></g:caption>
+    <g:FlowPanel>
+        <g:Grid>
+         <g:row>
+             <g:customCell>
+                 <g:Label>Game Name</g:Label>
+             </g:customCell>
+             <g:customCell>
+                 <g:TextBox debugId="gameNameBox" ui:field="gameNameTextBox"></g:TextBox>
+             </g:customCell>
+         </g:row>
+        </g:Grid>
+        <g:Button debugId="cancelButton" ui:field='cancelButton'>Cancel</g:Button>
+        <g:Button debugId="okButton" ui:field='okButton'>Okay</g:Button>
+    </g:FlowPanel>
+</g:DialogBox>
+</ui:UiBinder>

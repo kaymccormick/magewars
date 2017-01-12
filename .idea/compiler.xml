@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AjcSettings">
+    <option name="ajcPath" value="$MAVEN_REPOSITORY$/org/aspectj/aspectjtools/1.8.0/aspectjtools-1.8.0.jar" />
+    <option name="cmdLineParams" value="-showWeaveInfo" />
+    <option name="delegateToJavac" value="true" />
+  </component>
+  <component name="CompilerConfiguration">
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="game-integration-test" />
+        <module name="magewars-domain" />
+        <module name="magewars-domain-persistence" />
+        <module name="magewars-game" />
+        <module name="magewars-gameclient" />
+        <module name="magewars-gameserver" />
+        <module name="magewars-gameservice" />
+        <module name="magewars-jfx" />
+        <module name="magewars-jfxapp-integration-test" />
+        <module name="magewars-selenium" />
+        <module name="magewars-test" />
+        <module name="magewars-ui" />
+        <module name="magewars-ui-integration-test" />
+        <module name="magewars-ui-jfx" />
+        <module name="magewars-webapp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="game-integration-test" target="1.8" />
+      <module name="gwt-jfxbeans" target="1.8" />
+      <module name="magewars-domain" target="1.8" />
+      <module name="magewars-domain-persistence" target="1.8" />
+      <module name="magewars-game" target="1.8" />
+      <module name="magewars-gameclient" target="1.8" />
+      <module name="magewars-gameserver" target="1.8" />
+      <module name="magewars-gameservice" target="1.8" />
+      <module name="magewars-jfx" target="1.8" />
+      <module name="magewars-jfxapp-integration-test" target="1.8" />
+      <module name="magewars-selenium" target="1.8" />
+      <module name="magewars-test" target="1.8" />
+      <module name="magewars-ui" target="1.8" />
+      <module name="magewars-ui-integration-test" target="1.8" />
+      <module name="magewars-ui-jfx" target="1.8" />
+      <module name="magewars-webapp" target="1.8" />
+      <module name="pom" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-Xlint:unchecked" />
+  </component>
+</project>

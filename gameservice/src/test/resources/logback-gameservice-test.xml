@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- gameservice logback-test.xml -->
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <file>out.txt</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="trace"></logger>
+    <logger name="org.hibernate" level="warn"/>
+    <!--<logger name="us.heptet.magewars" level="trace"/>-->
+    <logger name="us.heptet.magewars" level="trace">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <root level="warn">
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>
+

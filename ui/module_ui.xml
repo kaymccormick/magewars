@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_ui" default="compile.module.ui">
+  <dirname property="module.ui.basedir" file="${ant.file.module_ui}"/>
+  
+  <property name="module.jdk.home.ui" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ui" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ui" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ui" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="ui.output.dir" value="${module.ui.basedir}/../out/production/ui"/>
+  <property name="ui.testoutput.dir" value="${module.ui.basedir}/../out/test/ui"/>
+  
+  <path id="ui.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ui.module.production.classpath">
+    <path refid="${module.jdk.classpath.ui}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${domain.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <pathelement location="${game.output.dir}"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="ui.runtime.production.module.classpath">
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  <path id="ui.module.classpath">
+    <path refid="${module.jdk.classpath.ui}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="ui.runtime.module.classpath">
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.gwt-dev.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ui">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ui">
+    <patternset refid="excluded.from.module.ui"/>
+  </patternset>
+  
+  <path id="ui.module.sourcepath">
+    <dirset dir="${module.ui.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="ui.module.test.sourcepath">
+    <dirset dir="${module.ui.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ui" depends="compile.module.ui.production,compile.module.ui.tests" description="Compile module ui"/>
+  
+  <target name="compile.module.ui.production" depends="compile.module.domain,compile.module.game" description="Compile module ui; production classes">
+    <mkdir dir="${ui.output.dir}"/>
+    <javac destdir="${ui.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ui}/javac">
+      <compilerarg line="${compiler.args.ui}"/>
+      <bootclasspath refid="ui.module.bootclasspath"/>
+      <classpath refid="ui.module.production.classpath"/>
+      <src refid="ui.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ui"/>
+    </javac>
+    
+    <copy todir="${ui.output.dir}">
+      <fileset dir="${module.ui.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.ui.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ui.tests" depends="compile.module.ui.production" description="compile module ui; test classes" unless="skip.tests">
+    <mkdir dir="${ui.testoutput.dir}"/>
+    <javac destdir="${ui.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ui}/javac">
+      <compilerarg line="${compiler.args.ui}"/>
+      <bootclasspath refid="ui.module.bootclasspath"/>
+      <classpath refid="ui.module.classpath"/>
+      <src refid="ui.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ui"/>
+    </javac>
+    
+    <copy todir="${ui.testoutput.dir}">
+      <fileset dir="${module.ui.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.ui" description="cleanup module">
+    <delete dir="${ui.output.dir}"/>
+    <delete dir="${ui.testoutput.dir}"/>
+  </target>
+  
+  <property name="gwt.compiler.output.ui" value="${module.ui.basedir}/GWTCompilerOutput_ui"/>
+  
+  <!-- Run GWT compiler for GWT module ${gwt.module.name} -->
+  <target name="run.gwt.compiler.ui" description="Run GWT compiler">
+    <java fork="true" jvm="${module.jdk.bin.ui}/java" classname="com.google.gwt.dev.Compiler">
+      <jvmarg line="-Xmx1024m"/>
+      <classpath>
+        <pathelement location="${gwt.sdk.home.ui}/gwt-dev.jar"/>
+        <path refid="ui.module.sourcepath"/>
+        <path refid="domain.module.sourcepath"/>
+        <path refid="game.module.sourcepath"/>
+        <path refid="gwt-jfxbeans.module.sourcepath"/>
+        <path refid="ui.module.classpath"/>
+      </classpath>
+      <arg value="-logLevel"/>
+      <arg value="WARN"/>
+      <arg value="-war"/>
+      <arg value="${gwt.compiler.output.ui}"/>
+      <arg value="-style"/>
+      <arg value="DETAILED"/>
+      <arg value="${gwt.module.name}"/>
+    </java>
+  </target>
+  
+  <target name="compile.gwt.ui" depends="compile.module.ui" description="Compile all GWT modules in module ui">
+    <property name="gwt.sdk.home.ui" value="${gwt.sdk.home}"/>
+    <antcall target="run.gwt.compiler.ui">
+      <param name="gwt.module.name" value="us.heptet.magewars.Ui"/>
+    </antcall>
+  </target>
+</project>

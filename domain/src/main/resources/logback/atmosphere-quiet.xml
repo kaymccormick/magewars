@@ -1,0 +1,8 @@
+<included>
+    <logger name="org.atmosphere.inject.InjectableObjectFactory" level="info"/>
+    <logger name="org.atmosphere.annotation.AnnotationUtil" level="warn"/>
+    <logger name="org.atmosphere.cpr.AnnotationHandler" level="warn"/>
+    <logger name="org.atmosphere.cpr.AtmosphereFramework" level="warn"/>
+
+
+</included>

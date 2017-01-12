@@ -1,0 +1,188 @@
+#arenaZones,#boardpane {
+    /*width: 2304px;
+    height: 1728px;*/
+    table-layout: fixed;
+    border-spacing: 0px;
+    border-width: 0px;
+    border-collapse: collapse;
+    /*
+    transform: scale(.5);
+    transform-origin: 0% 0%;
+    -webkit-transform: scale(.5) rotatex(45deg);
+    perspective: 600px;*/
+
+}
+.Zone,#boardpane > tbody > tr > td > div{
+    width: 576px;
+    height: 576px;
+    background-repeat:  no-repeat;
+    background-size: cover;
+}
+
+td {
+    margin: 0px;
+    padding: 0px;
+}
+@supports ( display: grid ) {
+    #arenaZones {
+        display: grid;
+        grid-template-columns: 576px 576px 576px 576px;
+        grid-template-rows: 576 px 576 px 576 px;
+        border-spacing: 0px;
+    }
+}
+
+@supports ( display-inside: table ) {
+    #arenaZones
+    {
+        display-inside: table;
+    }
+    .arenaRow
+    {
+        display-outside: table-row;
+    }
+    .zone
+    {
+        display-outside: table-cell;
+    }
+}
+#arenaZones {
+    display: -ms-grid;
+    -ms-grid-columns: 576px 576px 576px 576px;
+    -ms-grid-rows: 576px 576px 576px;
+    border-spacing: 0px;
+}
+
+.zone {
+    width: 576px;
+    height: 576px;
+    background-repeat:  no-repeat;
+    background-size: cover;
+}
+@media print {
+    #zone0-0 {
+
+    }
+}
+@supports ( display: grid ) {
+    #zone0-0 {
+        background-image: url("zone0-0.png");
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #zone1-0 {
+        background-image: url("zone1-0.png");
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #zone2-0 {
+        background-image: url("zone2-0.png");
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    #zone3-0 {
+        background-image: url("zone3-0.png");
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    #zone0-1 {
+        background-image: url("zone0-1.png");
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #zone1-1 {
+        background-image: url("zone1-1.png");
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #zone2-1 {
+        background-image: url("zone2-1.png");
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    #zone3-1 {
+        background-image: url("zone3-1.png");
+        grid-column: 4;
+        grid-row: 2;
+    }
+
+    #zone0-2 {
+        background-image: url("zone0-2.png");
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #zone1-2 {
+        background-image: url("zone1-2.png");
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    #zone2-2 {
+        background-image: url("zone2-2.png");
+        grid-column: 3;
+        grid-row: 3;
+    }
+
+    #zone3-2 {
+        background-image: url("zone3-2.png");
+        grid-column: 4;
+        grid-row: 3;
+    }
+}
+
+    #zone0-0 {
+        background-image: url("zone0-0.png");
+        -ms-grid-column: 1; -ms-grid-row: 1;
+    }
+    #zone1-0 {
+        background-image: url("zone1-0.png");
+        -ms-grid-column: 2; -ms-grid-row: 1;
+    }
+    #zone2-0 {
+        background-image: url("zone2-0.png");
+        -ms-grid-column: 3; -ms-grid-row: 1;
+    }
+    #zone3-0 {
+        background-image: url("zone3-0.png");
+        -ms-grid-column: 4; -ms-grid-row: 1;
+    }
+    #zone0-1 {
+        background-image: url("zone0-1.png");
+        -ms-grid-column: 1; -ms-grid-row: 2;
+    }
+    #zone1-1 {
+        background-image: url("zone1-1.png");
+        -ms-grid-column: 2; -ms-grid-row: 2;
+    }
+    #zone2-1 {
+        background-image: url("zone2-1.png");
+        -ms-grid-column: 3; -ms-grid-row: 2;
+    }
+    #zone3-1 {
+        background-image: url("zone3-1.png");
+        -ms-grid-column: 4; -ms-grid-row: 2;
+    }
+    #zone0-2 {
+        background-image: url("zone0-2.png");
+        -ms-grid-column: 1; -ms-grid-row: 3;
+    }
+    #zone1-2 {
+        background-image: url("zone1-2.png");
+        -ms-grid-column: 2; -ms-grid-row: 3;
+    }
+    #zone2-2 {
+        background-image: url("zone2-2.png");
+        -ms-grid-column: 3; -ms-grid-row: 3;
+    }
+    #zone3-2 {
+        background-image: url("zone3-2.png");
+        -ms-grid-column: 4; -ms-grid-row: 3;
+    }

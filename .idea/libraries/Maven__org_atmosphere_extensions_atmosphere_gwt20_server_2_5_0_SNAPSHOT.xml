@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.atmosphere.extensions:atmosphere-gwt20-server:2.5.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/atmosphere/extensions/atmosphere-gwt20-server/2.5.0-SNAPSHOT/atmosphere-gwt20-server-2.5.0-20160714.032636-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/atmosphere/extensions/atmosphere-gwt20-server/2.5.0-SNAPSHOT/atmosphere-gwt20-server-2.5.0-20160714.032636-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../atmosphere-extensions/gwt20/modules/atmosphere-gwt20-server/src/main/java" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/atmosphere/extensions/atmosphere-gwt20-server/2.5.0-SNAPSHOT/atmosphere-gwt20-server-2.5.0-20160714.032636-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

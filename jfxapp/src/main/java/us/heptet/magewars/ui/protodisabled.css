@@ -1,0 +1,55 @@
+.menu-button { -fx-background-color: black;
+-fx-background-insets: 0;
+-fx-background-radius: 0;
+-fx-padding: 0.166667em;
+-fx-text-fill: white;
+}
+
+.menu-button:disabled {
+-fx-background-color: lightgray;
+-fx-opacity: 1.0;
+-fx-text-fill: white;
+}
+
+***** removed 2/27/14
+
+
+.root {
+ -fx-background: #515a5f;
+ -fx-disabled-opacity: 1.0;
+ -fx-border-color: black;
+ }
+.tool-bar {
+fx-background-color: fx-background; }
+.button { -fx-background-color: black;
+-fx-background-insets: 0;
+-fx-background-radius: 0;
+-fx-padding: 0.166667em;
+-fx-text-fill: white;
+}
+
+.button:disabled {
+-fx-background-color: #cccccc;
+-fx-opacity: 1.0;
+-fx-text-fill: darkgray;
+}
+.label {
+-fx-text-fill: white;
+}
+.label:disabled {
+-fx-opacity: 1.0;
+-fx-text-fill: black;
+}
+.menu-button { -fx-background-color: black;
+-fx-background-insets: 0;
+-fx-background-radius: 0;
+-fx-padding: 0.166667em;
+-fx-text-fill: white;
+-fx-opacity: 1.0;
+}
+
+.menu-button:disabled {
+-fx-background-color: lightgray;
+-fx-opacity: 1.0;
+-fx-text-fill: white;
+}

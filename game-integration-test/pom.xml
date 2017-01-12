@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>us.heptet.magewars</groupId>
+        <artifactId>pom</artifactId>
+        <version>0.20-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <properties>
+        <magewars.asyncweb.contextPath>/magewars-asyncweb</magewars.asyncweb.contextPath>
+        <magewars.asyncweb.endpointPath>/atm</magewars.asyncweb.endpointPath>
+    </properties>
+    <artifactId>game-integration-test</artifactId>
+    <version>0.20-SNAPSHOT</version>
+    <name>game-integration-test</name>
+    <dependencies>
+        <dependency>
+            <groupId>us.heptet.magewars</groupId>
+            <artifactId>magewars-game</artifactId>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.vintage.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- why testng also? -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testNgVersion}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Logging (Logback, Janino) -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logbackVersion}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <!-- JMock -->
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock</artifactId>
+            <version>${jmockVersion}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-legacy</artifactId>
+            <version>${jmockVersion}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>${jmockVersion}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <exclude>**/AsyncClientTest.java</exclude>
+                    </includes>
+                    <excludedGroups>broken,unimp</excludedGroups>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <systemPropertyVariables>
+                        <magewars.asyncweb.port>${magewars.asyncweb.port}</magewars.asyncweb.port>
+                        <magewars.asyncweb.host>${magewars.asyncweb.host}</magewars.asyncweb.host>
+                        <magewars.asyncweb.contextPath>${magewars.asyncweb.contextPath}</magewars.asyncweb.contextPath>
+                        <magewars.asyncweb.endpointPath>/atm</magewars.asyncweb.endpointPath>
+                        <override.baselogdir>${override.baselogdir}</override.baselogdir>
+                        <spring.profiles.active>${magewars.spring.profiles.active}</spring.profiles.active>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

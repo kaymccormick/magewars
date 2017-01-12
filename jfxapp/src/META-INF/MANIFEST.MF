@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Class-Path: testng.jar hibernate-jpa-2.0-api-1.0.1.Final.jar hibernate
+ -commons-annotations-4.0.2.Final.jar antlr-2.7.7.jar dom4j-1.6.1.jar 
+ javassist-3.15.0-GA.jar jboss-logging-3.1.0.GA.jar jboss-transaction-
+ api_1.1_spec-1.0.1.Final.jar hibernate-core-4.2.2.Final.jar hsqldb-2.
+ 0.0.jar postgresql-9.3-1100.jdbc41.jar jfxtras-labs-2.2-r5.jar jgoodi
+ es-common-1.2.1.jar jgoodies-forms.jar jgoodies-looks-2.4.2.jar
+Main-Class: us.heptet.magewars.ui.javafx.ProtoApp
+

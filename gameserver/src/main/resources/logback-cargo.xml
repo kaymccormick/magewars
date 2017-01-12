@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- gameserver cargo logback test logback.xml -->
+
+
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>cargo %d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/cargo-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="HEPTETOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/gameserver-cargo-heptet-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <include resource="logback/atmosphere-quiet.xml"/>
+
+
+    <logger name="org.hibernate" level="null"/>
+    <logger name="org.hibernate.SQL" level="debug">
+        <!-- experiment with conditions yay -->
+        <!--
+                <if condition='!isNull("sql-to-stdout")'>
+                    <then>
+                        <appender-ref ref="STDOUT"/>
+                    </then>
+                </if>
+                -->
+    </logger>
+    <!--<logger name="org.hibernate.type" level="trace">
+        <appender-ref ref="STDOUT"/>
+    </logger>-->
+    <!--
+    <logger name="us.heptet" level="trace">
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    -->
+    <logger name="us.heptet" level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    <logger name="org.apache.http.wire" level="trace"/>
+    <root level="trace">
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>

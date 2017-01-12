@@ -1,0 +1,5 @@
+Mage wars boaard size: 8" zones. 4x3 layout. 32x24 total board size.
+63 mm x 88 mm playerCard size.
+2.48" x 3.46"
+178.56px x 249.12px
+

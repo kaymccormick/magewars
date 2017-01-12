@@ -1,0 +1,9 @@
+<module>
+    <inherits name="us.heptet.magewars.domain.Domain"/>
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.google.gwt.logging.Logging"/>
+    <!--<inherits name="com.googlecode.gwtx.Java"/>-->
+    <source path="util"/>
+    <source path="game"/>
+    <source path="service"/>
+</module>

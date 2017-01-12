@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="arena.css" type="text/css">
+      <script src="cards-pretty.json"></script>
+      <script type="application/javascript">
+          function doit()
+          {
+          var img = document.createElement("img");
+          img.setAttribute("src", "agony.jpg");
+              var d = document.querySelectorAll("#arenaZones");
+              //alert(d);//.item(1));//.attributes.getNamedItem("id"));;
+          //document.getElementById("zone0-0").appendChild(img);
+          }
+      </script>
+    <title>Arena</title>
+  </head>
+  <body onload="doit()">
+  <div id="arenaZones">
+      <div class="arenaRow" id="row0">
+    <div class="zone" id="zone0-0"></div>
+    <div class="zone" id="zone1-0"></div>
+    <div class="zone" id="zone2-0"></div>
+    <div class="zone" id="zone3-0"></div>
+      </div>
+      <div class="arenaRow" id="row1">
+    <div class="zone" id="zone0-1"></div>
+    <div class="zone" id="zone1-1"></div>
+    <div class="zone" id="zone2-1"></div>
+    <div class="zone" id="zone3-1"></div>
+      </div>
+      <div class="arenaRow" id="row2">
+    <div class="zone" id="zone0-2"></div>
+    <div class="zone" id="zone1-2"></div>
+    <div class="zone" id="zone2-2"></div>
+    <div class="zone" id="zone3-2"></div>
+      </div>  </div>
+  </body>
+</html>

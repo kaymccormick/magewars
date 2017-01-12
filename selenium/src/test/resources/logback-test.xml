@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- selenium logback test logback.xml -->
+    <property resource="logback-test.properties"/>
+
+    <property resource="global-logback.properties"/>
+    <property resource="selenium-logback.properties"/>
+
+    <include resource="logback/properties.xml"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${stdoutLevel}</level>
+        </filter>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>org.apache.http</logger>
+            <level>WARN</level>
+        </filter>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>com.gargoylesoftware.htmlunit</logger>
+            <level>WARN</level>
+        </filter>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>org.eclipse.jetty</logger>
+            <level>WARN</level>
+        </filter>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}selenium${logfilesuffix}</file>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>org.apache.http</logger>
+            <level>WARN</level>
+        </filter>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine</logger>
+            <level>DEBUG</level>
+        </filter>
+
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>com.gargoylesoftware.htmlunit.javascript.configuration.AbstractJavaScriptConfiguration</logger>
+            <level>INFO</level>
+        </filter>
+
+
+        <!--
+                <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+                    <logger>com.gargoylesoftware.htmlunit</logger>
+                    <level>WARN</level>
+                </filter>
+        -->
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>org.eclipse.jetty</logger>
+            <level>WARN</level>
+        </filter>
+
+        <encoder>
+            <pattern>${longdate} [%thread] %-5level %logger{360} - %msg%n</pattern>
+
+        </encoder>
+    </appender>
+
+    <appender name="HEPTETOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}selenium-heptet-test${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <if condition='isNull("logAll")'>
+        <then>
+            <include resource="logback/spring-quiet.xml"/>
+
+            <logger name="org.hibernate" level="null"/>
+            <logger name="org.hibernate.SQL" level="debug">
+                <!-- experiment with conditions yay -->
+                <!--
+                        <if condition='!isNull("sql-to-stdout")'>
+                            <then>
+                                <appender-ref ref="STDOUT"/>
+                            </then>
+                        </if>
+                        -->
+            </logger>
+            <logger name="us.heptet.magewars.ui.DebugEventFilter" level="info"/>
+            <logger name="org.atmosphere" level="trace"/>
+
+            <!--<logger name="org.hibernate.type" level="trace">
+                <appender-ref ref="STDOUT"/>
+            </logger>-->
+            <!--
+            <logger name="us.heptet" level="trace">
+                <appender-ref ref="HEPTETOUTFILE"/>
+            </logger>
+            -->
+            <logger name="us.heptet" level="trace">
+                <!--        <appender-ref ref="STDOUT" />-->
+            </logger>
+            <logger name="org.apache.http" level="info"/>
+            <!-- this htmlunit gets very spammy -->
+            <logger name="com.gargoylesoftware.htmlunit" level="info"/>
+        </then>
+    </if>
+
+    <root level="trace">
+        <appender-ref ref="OUTFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

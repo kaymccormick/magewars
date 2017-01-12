@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>MageWars Game List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<table>
+    <tr><th></th><th colspan="2"># Players</th></tr>
+    <tr><th>Game Name</th><th>Min</th><th>Max</th></tr>
+    <tr th:each="game : ${games}">
+        <td th:text="${game.gameName}">Onions</td>
+        <td th:text="${game.minPlayers}">Onions</td>
+        <td th:text="${game.maxPlayers}">Onions</td>
+    </tr>
+</table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+#arena-view-pane { -fx-background-color: black; }
+.marker:disabled { -fx-opacity: .6; }
+.action-marker { -fx-border-color: black; }
+.action-marker:hover > .action-marker-star { -fx-fill: red; }
+.channeling-status-value { -fx-background-color: #29387b; -fx-text-fill: white; -fx-font-size: 18pt;
+ -fx-text-alignment: center; }
+.mana-supply-status-value { -fx-background-color: #5c2f80; -fx-text-fill: white; -fx-font-size: 18pt;
+ -fx-text-alignment: center; }
+.damage-status-value { -fx-background-color: #b1152a; -fx-text-fill: white; -fx-font-size: 18pt;
+ -fx-text-alignment: center; }
+ .mage-status-label { -fx-background-color: #5e5b38; -fx-font-size: 16pt;
+  -fx-text-fill: white }
+  .mana-supply-current-value { -fx-background-color: black; -fx-text-fill: black; }
+  #spell-1-slot-label,
+#spell-2-slot-label,
+#selected-spell-1-slot-label,
+#selected-spell-2-slot-label
+{
+    -fx-background-color: white; -fx-border-color: white;
+    -fx-background-radius: 5px;
+    -fx-font-size: 18pt;
+    -fx-border-radius: 10px; -fx-padding: 5px;
+}
+
+#spell-chooser { -fx-background-color: transparent; }
+
+    #start-game-menu-item { -fx-font-family: 'Gloucester MT Extra Condensed';
+                            -fx-font-size: 24pt;
+                        }
+#quit-game-menu-item { -fx-font-family: 'Gloucester MT Extra Condensed';
+                        -fx-font-size: 24pt;
+-fx-background-color: black;
+                        }
+
+#main-menu > .label { -fx-background-color: black; }
+#main-menu { -fx-border-color: black; }
+.zcontext-menu > .menu-item { -fx-background-color: black; }
+#startgamebutton { -fx-font-family: 'Gloucester MT Extra Condensed'; -fx-font-size: 24pt }

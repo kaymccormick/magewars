@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gwt-jfxbeans" default="compile.module.gwt-jfxbeans">
+  <dirname property="module.gwt-jfxbeans.basedir" file="${ant.file.module_gwt-jfxbeans}"/>
+  
+  <property name="module.jdk.home.gwt-jfxbeans" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gwt-jfxbeans" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gwt-jfxbeans" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gwt-jfxbeans" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="gwt-jfxbeans.output.dir" value="${module.gwt-jfxbeans.basedir}/../out/production/gwt-jfxbeans"/>
+  <property name="gwt-jfxbeans.testoutput.dir" value="${module.gwt-jfxbeans.basedir}/../out/test/gwt-jfxbeans"/>
+  
+  <path id="gwt-jfxbeans.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gwt-jfxbeans.module.production.classpath">
+    <path refid="${module.jdk.classpath.gwt-jfxbeans}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+  </path>
+  
+  <path id="gwt-jfxbeans.runtime.production.module.classpath">
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+  </path>
+  
+  <path id="gwt-jfxbeans.module.classpath">
+    <path refid="${module.jdk.classpath.gwt-jfxbeans}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.gwt-dev.classpath"/>
+  </path>
+  
+  <path id="gwt-jfxbeans.runtime.module.classpath">
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.gwt-dev.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gwt-jfxbeans">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gwt-jfxbeans">
+    <patternset refid="excluded.from.module.gwt-jfxbeans"/>
+  </patternset>
+  
+  <path id="gwt-jfxbeans.module.sourcepath">
+    <dirset dir="${module.gwt-jfxbeans.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="gwt-jfxbeans.module.test.sourcepath">
+    <dirset dir="${module.gwt-jfxbeans.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gwt-jfxbeans" depends="compile.module.gwt-jfxbeans.production,compile.module.gwt-jfxbeans.tests" description="Compile module gwt-jfxbeans"/>
+  
+  <target name="compile.module.gwt-jfxbeans.production" description="Compile module gwt-jfxbeans; production classes">
+    <mkdir dir="${gwt-jfxbeans.output.dir}"/>
+    <javac destdir="${gwt-jfxbeans.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gwt-jfxbeans}/javac">
+      <compilerarg line="${compiler.args.gwt-jfxbeans}"/>
+      <bootclasspath refid="gwt-jfxbeans.module.bootclasspath"/>
+      <classpath refid="gwt-jfxbeans.module.production.classpath"/>
+      <src refid="gwt-jfxbeans.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gwt-jfxbeans"/>
+    </javac>
+    
+    <copy todir="${gwt-jfxbeans.output.dir}">
+      <fileset dir="${module.gwt-jfxbeans.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.gwt-jfxbeans.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gwt-jfxbeans.tests" depends="compile.module.gwt-jfxbeans.production" description="compile module gwt-jfxbeans; test classes" unless="skip.tests">
+    <mkdir dir="${gwt-jfxbeans.testoutput.dir}"/>
+    <javac destdir="${gwt-jfxbeans.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gwt-jfxbeans}/javac">
+      <compilerarg line="${compiler.args.gwt-jfxbeans}"/>
+      <bootclasspath refid="gwt-jfxbeans.module.bootclasspath"/>
+      <classpath refid="gwt-jfxbeans.module.classpath"/>
+      <src refid="gwt-jfxbeans.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gwt-jfxbeans"/>
+    </javac>
+    
+    <copy todir="${gwt-jfxbeans.testoutput.dir}">
+      <fileset dir="${module.gwt-jfxbeans.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.gwt-jfxbeans" description="cleanup module">
+    <delete dir="${gwt-jfxbeans.output.dir}"/>
+    <delete dir="${gwt-jfxbeans.testoutput.dir}"/>
+  </target>
+  
+  <property name="gwt.compiler.output.gwt-jfxbeans" value="${module.gwt-jfxbeans.basedir}/GWTCompilerOutput_gwt-jfxbeans"/>
+  
+  <!-- Run GWT compiler for GWT module ${gwt.module.name} -->
+  <target name="run.gwt.compiler.gwt-jfxbeans" description="Run GWT compiler">
+    <java fork="true" jvm="${module.jdk.bin.gwt-jfxbeans}/java" classname="com.google.gwt.dev.Compiler">
+      <jvmarg line="-Xmx1024m"/>
+      <classpath>
+        <pathelement location="${gwt.sdk.home.gwt-jfxbeans}/gwt-dev.jar"/>
+        <path refid="gwt-jfxbeans.module.sourcepath"/>
+        <path refid="gwt-jfxbeans.module.classpath"/>
+      </classpath>
+      <arg value="-logLevel"/>
+      <arg value="WARN"/>
+      <arg value="-war"/>
+      <arg value="${gwt.compiler.output.gwt-jfxbeans}"/>
+      <arg value="-style"/>
+      <arg value="DETAILED"/>
+      <arg value="${gwt.module.name}"/>
+    </java>
+  </target>
+  
+  <target name="compile.gwt.gwt-jfxbeans" depends="compile.module.gwt-jfxbeans" description="Compile all GWT modules in module gwt-jfxbeans">
+    <property name="gwt.sdk.home.gwt-jfxbeans" value="${gwt.sdk.home}"/>
+    <antcall target="run.gwt.compiler.gwt-jfxbeans">
+      <param name="gwt.module.name" value="us.heptet.gwt.JfxBeans"/>
+    </antcall>
+  </target>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="magewars-asyncweb:war">
+    <output-path>$PROJECT_DIR$/asyncweb/target</output-path>
+    <root id="archive" name="magewars-asyncweb-0.20-SNAPSHOT.war">
+      <element id="artifact" artifact-name="magewars-asyncweb:war exploded" />
+    </root>
+  </artifact>
+</component>

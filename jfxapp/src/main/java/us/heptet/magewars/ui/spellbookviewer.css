@@ -1,0 +1,3 @@
+.selectedcard { -fx-border-width: 5; -fx-border-color: lawngreen }
+.canbeselected { -fx-border-width: 5; -fx-border-color: transparent }
+#selectedspellslabel { -fx-font-size: 24 }

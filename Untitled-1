@@ -1,0 +1,113 @@
+other stuff:
+ damage barrier (form of attack)
+ circle of fire/lightning is an enchantment which confers a damage barrier
+
+card types:
+
+enchantment
+incantation
+conjuration
+attack
+creature
+equipment
+
+enchantment:
+  defense
+  curse
+  force,defense
+  psychic,control
+  flame,barrier
+  lightning,barrier
+  illusion
+  protection
+  protection,aegis
+  mana
+  force
+  command
+  curse,poison
+  trap,flame
+  metamagic
+  psychic
+  trap,teleport
+  transform
+  vampiric
+  
+enchantment targets:
+  creature
+  living creature
+  corporeal creature
+  non-mage creature
+  non-mage living creature
+  zone or object
+  forcemaster
+  zone
+  object
+  friendly,soldier creature
+  non-mage corporeal creature
+  
+incantation:
+teleport
+command
+metamagic
+acid
+seismic
+flame
+force
+healing
+psychic
+
+incantation targets:
+enchantment targets+
+arena
+revealed enchantment
+mage
+1-2 adjacent zones
+creature or conjuration
+destroyed living creature
+hidden enchantment
+enchantment & new target
+reveaeled enchantment & new target
+
+  
+
+
+tokens:
+banish
+
+Spell can have a "trait" and the spell can also confer a trait to the
+target as an enchantment.
+
+enchantment can:
+ confers a defense which may or may not be unaffected by conditions on the creature
+ alter the number of attack dice for certain types of attacks (e.g. agony)
+ grant a trait (fast)
+ grant a trait with a modifier (e.g., melee +2)
+ enchantment may have a reveal trigger
+ grant life
+ cause an effect when the creature moves (chains of agony damages the creature)
+ have different reveal conditions (charm can only be revealed between
+	 action phases)
+ prevent the target from attacking the controller
+ provide conditions for the destruction of the enchantment
+ 	(charm = on damage from controller)
+ have variable reveal cost
+ teleport creature,
+ confer traits to a target's attacks of a certain type (melee or ranged)
+ may be ineffective against creatures with certain traits
+ damage the target during upkeep
+ restrain a creature
+
+forcefield - special case
+confer armor to all friendly corporeal creatures in the target zone
+marked for death
+
+reveal cost:
+	creature's level - 1
+	2 * creature's level
+
+Enchantments are cast on a specific target. They do not exert their
+effects until they are revealed, after the caster has paid a reveal
+cost. The possible effects of enchantments are many and must be taken
+into account during various game stages and actions.
+
+It may make sense to move life/armor/channeling to the "Card" class

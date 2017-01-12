@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" verbose="1">
+    <test name="Test1">
+        <groups>
+            <run>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="us.heptet.magewars.selenium.ITCase">
+                <methods>
+<!--                    <include name="testSignup"/>
+-->
+                    <!--<include name="testJoinGame"/>-->
+
+                    <!--<include name="testSignup"/>
+                    <include name="testCreateGame"/>
+                    <include name="testTest"/>-->
+                </methods>
+
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    <import resource="classpath:domainconfig.xml"/>
+    <!--
+    <bean class="us.heptet.magewars.rest.client.GamesClient">
+        <property name="baseUrl" value="http://localhost:8082/webapp"/>
+        <property name="username" value="kay3"/>
+        <property name="password" value="poop"/>
+            </bean>
+            -->
+    <!--<bean name="gameEnvironment" class="us.heptet.magewars.game.GameEnvironmentImpl"/>-->
+    <!--
+    this was moved to appconfig
+    <bean class="us.heptet.magewars.game.GameSituation" factory-bean="gameEnvironmentImpl" factory-method="createGameSituation"/>
+    -->
+    <context:component-scan base-package="us.heptet.magewars.game"/>
+    <bean id="gameSetup" class="us.heptet.magewars.domain.game.setup.GameSetupImpl"/>
+    <bean id="eventManager" class="us.heptet.magewars.game.events.EventManagerImpl"/>
+
+    <bean id="gameControl" class="us.heptet.magewars.game.GameControlImpl"/>
+    <!-- should this be prototype? -->
+    <bean id="gameStateChangeProcessor" class="us.heptet.magewars.game.state.GameStateChangeProcessorImpl"
+    />
+    <bean id="playerInfo" class="us.heptet.magewars.game.PlayerInfoImpl"/>
+    <bean id="gameSituation" class="us.heptet.magewars.game.Game">
+        <constructor-arg index="0" ref="eventManager"/>
+        <constructor-arg index="1" ref="arena"/>
+        <constructor-arg index="2" ref="baseCardSet"/>
+    </bean>
+</beans>
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- webapp logback.xml -->
+
+    <!--TODO modernize this logback-->
+
+    <property resource="global-logback.properties"/>
+    <property resource="webapp-logback.properties"/>
+
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <file>${logdir}/${logfileprefix}webapp${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="requestmapping" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}requestmapping${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FSI" class="ch.qos.logback.core.FileAppender">
+        <file>${logdir}/${logfileprefix}filsecint${logfilesuffix}</file>
+        <append>false</append>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <if condition='isNull("logAll")'>
+        <then>
+
+            <logger name="org.atmosphere" level="trace"/>
+            <!--<logger name="org.atmosphere.interceptor.HeartbeatInterceptor" level="info"/>-->
+            <logger name="org.atmosphere.interceptor.HeartbeatInterceptor"
+                    level="trace"/> <!-- changing to trace for debugging -->
+
+            <!-- this class reports on URLS provided by webmvc controllers -->
+            <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"
+                    level="trace">
+                <appender-ref ref="requestmapping"/>
+            </logger>
+
+            <logger name="org.springframework" level="warn"></logger>
+            <logger name="us.heptet.magewars.testwebapp.config.BeanFactoryPostProcessor" level="warn"/>
+            <!--<logger name="org.springframework.security.web.util.matcher.AntPathRequestMatcher" level="trace">
+                <appender-ref ref="FSI"/>
+            </logger>-->
+            <!--<logger name="org.springframework.security.web.access.intercept.FilterSecurityInterceptor" level="trace">
+                <appender-ref ref="FSI"/>
+            </logger>-->
+            <logger name="org.hibernate" level="warn"/>
+            <logger name="us.heptet.magewars" level="trace"/>
+            <!-- this htmlunit gets very spammy -->
+            <logger name="com.gargoylesoftware.htmlunit" level="warn"/>
+            <logger name="org.thymeleaf" level="warn"/>
+            <logger name="reactor.io.net.impl.netty.tcp.NettyTcpClient" level="warn"/>
+        </then>
+    </if>
+    <root level="trace">
+        <!-- re-enabling STDOUT for debugging -->
+        <appender-ref ref="STDOUT"/>
+        <!-- end -->
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>

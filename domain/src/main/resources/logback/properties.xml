@@ -1,0 +1,22 @@
+<included>
+    <if condition='!isDefined("stdoutLevel")'>
+        <then>
+            <property name="stdoutLevel" value="INFO"/>
+        </then>
+    </if>
+    <if condition='isDefined("USER")'>
+        <then>
+            <property name="USERNAME" value="${USER}"/>
+        </then>
+    </if>
+    <if condition='isDefined("override.baselogdir")'>
+        <then>
+            <property name="baselogdir" value="${override.baselogdir}"/>
+        </then>
+    </if>
+    <if condition='isDefined("debugLogback")'>
+        <then>
+            <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+        </then>
+    </if>
+</included>

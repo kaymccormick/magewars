@@ -1,0 +1,35 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:with field="res" type="us.heptet.magewars.webapp.client.gwt.MyResources"/>
+    <ui:style>
+        .floatleftpanel { float: left; }
+        .credtextbox { /*width: 4em;*/ font-size:  16px; }
+        .outerFlowPanel { margin: 10px; }
+    </ui:style>
+    <g:FlowPanel>
+    <g:Label visible="false" ui:field="statusLabel"></g:Label>
+    <g:FlowPanel addStyleNames="{style.outerFlowPanel}" ui:field="loginPanel">
+        <g:DecoratorPanel addStyleNames="{res.gss.loginPanel}">
+            <g:FlowPanel>
+                <g:Label addStyleNames="{res.gss.mytest}" text="Login"/>
+        <g:Grid>
+            <g:row>
+                <g:customCell><g:Label addStyleNames="{res.gss.loginLabel}">Username</g:Label></g:customCell>
+                <g:customCell><g:TextBox visibleLength="12" debugId="usernamebox" addStyleNames="{style.credtextbox}" ui:field="username"></g:TextBox></g:customCell>
+            </g:row>
+            <g:row>
+
+                <g:customCell><g:Label addStyleNames="{res.gss.loginLabel}">Password</g:Label></g:customCell>
+                <g:customCell><g:PasswordTextBox visibleLength="12" debugId="passwordbox" addStyleNames="{style.credtextbox}" ui:field="password"></g:PasswordTextBox></g:customCell>
+                <g:customCell><g:Hyperlink targetHistoryToken="signup" debugId="signupLink" ui:field="signupLink">Sign up</g:Hyperlink></g:customCell>
+            </g:row>
+        </g:Grid>
+                <g:Button addStyleNames="{res.gss.loginButton}" debugId="loginbtn" ui:field="loginButton">Login</g:Button>
+                <g:HTMLPanel>
+                <p><a id="twitterlink" href="auth/twitter"><img src="images/sign-in-with-twitter-gray.png" border="0"/></a></p>
+                </g:HTMLPanel>
+            </g:FlowPanel>
+        </g:DecoratorPanel>
+    </g:FlowPanel>
+    </g:FlowPanel>
+</ui:UiBinder>

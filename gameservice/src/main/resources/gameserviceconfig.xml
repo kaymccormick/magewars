@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    <import resource="classpath:domainconfig.xml"/>
+    <context:component-scan base-package="us.heptet.magewars.game"/>
+    <context:component-scan base-package="us.heptet.magewars.server"/>
+
+    <!-- Our beans are scoped as "request" because they are not singletons, nor are they prototype-scoped beans.
+         Request is the closest and achieves the result we want without having to implement our own scope. -->
+    <bean id="serviceEventManager" class="us.heptet.magewars.game.events.EventManagerImpl" scope="request"/>
+
+    <bean id="roundFactory" class="us.heptet.magewars.gameservice.store.RoundFactory" scope="request">
+        <property name="gameSituation" ref="serviceGameSituation2"/>
+    </bean>
+    <!-- our primary bean that we initialize in the course of initializing a game in the store -->
+    <bean id="serviceGameControl" class="us.heptet.magewars.game.GameControlImpl" scope="request">
+        <constructor-arg index="0" ref="serviceGameSituation2"/>
+        <constructor-arg index="1" ref="serviceEventManager"/>
+        <property name="roundFactory" ref="roundFactory"/>
+        <property name="gameSetup" ref="serviceGameSetup2"/>
+    </bean>
+
+    <bean id="serviceGameSituation" class="us.heptet.magewars.gameservice.store.GameSituationImpl" scope="request">
+        <property name="persistence" ref="gamePersistence"/>
+    </bean>
+
+    <bean id="serviceArena" class="us.heptet.magewars.domain.game.ArenaImpl" scope="request"/>
+    <bean id="serviceGameSituation2" class="us.heptet.magewars.game.Game" scope="request">
+        <constructor-arg index="0" ref="serviceEventManager"/>
+        <constructor-arg index="1" ref="serviceArena"/>
+        <constructor-arg index="2" ref="baseCardSet"/>
+    </bean>
+
+    <bean id="serviceGameSetup2" class="us.heptet.magewars.domain.game.setup.GameSetupImpl" scope="request"/>
+
+    <bean id="gameStateChangeProcessor" class="us.heptet.magewars.game.state.GameStateChangeProcessorImpl"
+          scope="request">
+        <constructor-arg ref="serviceGameSituation"/>
+    </bean>
+    <bean id="playerInfo" class="us.heptet.magewars.game.EventingPlayerInfo" scope="request">
+        <constructor-arg ref="serviceEventManager"/>
+    </bean>
+    <bean id="gamePersistence" class="us.heptet.magewars.gameservice.store.GameSituationPersistence" scope="request">
+        <constructor-arg ref="serviceEventManager"/>
+    </bean>
+
+</beans>
+

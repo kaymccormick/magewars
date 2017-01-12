@@ -1,0 +1,18 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p="urn:import:us.heptet.magewars.webapp.client.view">
+    <g:FlowPanel>
+        <g:HTMLPanel>
+        <paper-drawer-panel>
+            <div drawer="">
+            <g:ListBox visibleItemCount="5">
+                <g:item value="Card Type">Card Type</g:item>
+                <g:item value="Mana Cost">Mana Cost</g:item>
+                <g:item value="Life + Armor">Life + Armor</g:item>
+            </g:ListBox>
+            </div>
+            <div main=""><p:LoginViewImpl/></div>
+        </paper-drawer-panel>
+        </g:HTMLPanel>
+    </g:FlowPanel>
+</ui:UiBinder>

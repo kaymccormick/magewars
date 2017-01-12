@@ -1,0 +1,85 @@
+@def PROMINDER_REGULAR_OTF resourceUrl("prominderRegularOtf");
+@def SEDEXPERSONALUSE_OTF resourceUrl("sedexPersonalUseOtf");
+
+@font-face {
+    font-family: "PROMINDER Regular";
+    src: PROMINDER_REGULAR_OTF format("opentype");
+}
+
+@font-face {
+    font-family: 'SEDEXPERSONALUSE';
+    src: SEDEXPERSONALUSE_OTF format('opentype');
+}
+
+.loginLabel {
+    font-family: 'SEDEXPERSONALUSE';
+    color: white;
+    font-size: 150%;
+}
+
+#twitterlink {
+    padding-left: 1em;
+}
+
+.mytest {
+    font-family: "PROMINDER Regular";
+    font-size: 250%;
+    color: black;
+}
+
+.loginPanel {
+    background-color: #8393ca;
+    border-radius: 5px;
+    padding: .33em;
+}
+
+.loginButton {
+    font-family: "PROMINDER Regular";
+}
+
+.mainViewPanel {
+    padding: 1em;
+    margin: .5em;
+    border: 1px solid black;
+}
+
+.mainHeader {
+    font-family: "PROMINDER Regular";
+    font-size: 300%;
+}
+
+.mainAction {
+padding: .5em; padding-top: .25em; margin-top: 0em; margin: .25em; font-size: 200%;
+background-color: #6699ff;
+test-decoration: none;
+font-family: 'SEDEXPERSONALUSE';
+}
+
+.startButton {
+}
+
+.stageLabel {
+}
+
+.phaseLabel {
+   transition: opacity 2s;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s ;
+    -ms-transition: opacity 2s ;
+    -o-transition: opacity 2s ;
+}
+
+.nextPhaseButton {
+    /*
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    */
+}
+
+.zeroOpacity {
+    opacity: 0;
+}
+
+.oneOpacity {
+    opacity: 1;
+}

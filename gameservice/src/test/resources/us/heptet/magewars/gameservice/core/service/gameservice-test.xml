@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Domain test is configured via two XML files - persistenceconfig.xml and domainconfig.xml
+        This imports domain config as JavaConfig - discrepancy -->
+    <import resource="classpath:gameconfig.xml"/>
+    <context:annotation-config></context:annotation-config>
+    <import resource="classpath*:persistenceconfig.xml"/>
+
+    <bean class="us.heptet.magewars.gameservice.persistence.services.jpa.GamePersistenceServiceImpl"/>
+    <bean class="us.heptet.magewars.gameservice.core.service.GameEventHandler"/>
+    <bean class="us.heptet.magewars.gameservice.core.service.GameServiceApplicationListener"/>
+    <bean name="jpaToGameDetails" class="us.heptet.magewars.gameservice.server.JpaToGameDetails"/>
+    <!-- this is duplicated, which is bad!! -->
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <ref bean="jpaToGameDetails"/>
+                <bean class="us.heptet.magewars.gameservice.server.JpaToGameExtendedDetails"/>
+            </set>
+        </property>
+    </bean>
+</beans>

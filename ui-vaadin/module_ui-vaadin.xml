@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_ui-vaadin" default="compile.module.ui-vaadin">
+  <dirname property="module.ui-vaadin.basedir" file="${ant.file.module_ui-vaadin}"/>
+  
+  <property name="module.jdk.home.ui-vaadin" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ui-vaadin" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ui-vaadin" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ui-vaadin" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="ui-vaadin.output.dir" value="${module.ui-vaadin.basedir}/../out/production/ui-vaadin"/>
+  <property name="ui-vaadin.testoutput.dir" value="${module.ui-vaadin.basedir}/../out/test/ui-vaadin"/>
+  
+  <path id="ui-vaadin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ui-vaadin.module.production.classpath">
+    <path refid="${module.jdk.classpath.ui-vaadin}"/>
+    <path refid="library.vaadin_client.classpath"/>
+    <path refid="library.vaadin_server.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+  </path>
+  
+  <path id="ui-vaadin.runtime.production.module.classpath">
+    <pathelement location="${ui-vaadin.output.dir}"/>
+    <path refid="library.vaadin_server.classpath"/>
+    <path refid="ui.runtime.production.module.classpath"/>
+    <path refid="domain.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="ui-vaadin.module.classpath">
+    <path refid="${module.jdk.classpath.ui-vaadin}"/>
+    <pathelement location="${ui-vaadin.output.dir}"/>
+    <path refid="library.vaadin_client.classpath"/>
+    <path refid="library.vaadin_server.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+  </path>
+  
+  <path id="ui-vaadin.runtime.module.classpath">
+    <pathelement location="${ui-vaadin.testoutput.dir}"/>
+    <pathelement location="${ui-vaadin.output.dir}"/>
+    <path refid="library.vaadin_client.classpath"/>
+    <path refid="library.vaadin_server.classpath"/>
+    <path refid="ui.runtime.module.classpath"/>
+    <path refid="domain.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ui-vaadin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ui-vaadin">
+    <patternset refid="excluded.from.module.ui-vaadin"/>
+  </patternset>
+  
+  <path id="ui-vaadin.module.sourcepath">
+    <dirset dir="${module.ui-vaadin.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ui-vaadin" depends="compile.module.ui-vaadin.production,compile.module.ui-vaadin.tests" description="Compile module ui-vaadin"/>
+  
+  <target name="compile.module.ui-vaadin.production" depends="compile.module.ui,compile.module.domain" description="Compile module ui-vaadin; production classes">
+    <mkdir dir="${ui-vaadin.output.dir}"/>
+    <javac destdir="${ui-vaadin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ui-vaadin}/javac">
+      <compilerarg line="${compiler.args.ui-vaadin}"/>
+      <bootclasspath refid="ui-vaadin.module.bootclasspath"/>
+      <classpath refid="ui-vaadin.module.production.classpath"/>
+      <src refid="ui-vaadin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ui-vaadin"/>
+    </javac>
+    
+    <copy todir="${ui-vaadin.output.dir}">
+      <fileset dir="${module.ui-vaadin.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ui-vaadin.tests" depends="compile.module.ui-vaadin.production" description="compile module ui-vaadin; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.ui-vaadin" description="cleanup module">
+    <delete dir="${ui-vaadin.output.dir}"/>
+    <delete dir="${ui-vaadin.testoutput.dir}"/>
+  </target>
+</project>

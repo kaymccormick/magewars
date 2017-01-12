@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: us.heptet:spring4gwt:1.02-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/us/heptet/spring4gwt/1.02-SNAPSHOT/spring4gwt-1.02-20160713.165354-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/us/heptet/spring4gwt/1.02-SNAPSHOT/spring4gwt-1.02-20160713.165354-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/us/heptet/spring4gwt/1.02-SNAPSHOT/spring4gwt-1.02-20160713.165354-1-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../spring4gwt/src/main/java" />
+    </SOURCES>
+  </library>
+</component>

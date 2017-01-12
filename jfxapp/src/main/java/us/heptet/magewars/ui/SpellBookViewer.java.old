@@ -1,0 +1,472 @@
+package us.heptet.magewars.ui;
+
+/*
+import com.sun.javafx.scene.NodeEventDispatcher;
+import com.sun.javafx.scene.NodeHelper;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ObjectPropertyBase;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventDispatchChain;
+import javafx.event.EventDispatcher;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import us.heptet.magewars.domain.game.PlayerCard;
+import us.heptet.magewars.game.Player;
+import us.heptet.magewars.domain.game.SpellBook;
+import us.heptet.magewars.domain.game.SpellCaster;
+import us.heptet.magewars.game.SpellCasterCard;
+
+import java.util.ArrayList;
+import java.util.IdentityHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.Callable;
+
+/**
+ * Created by kay on 1/23/14.
+ */
+public class SpellBookViewer extends Region {
+    private static Logger logger = LoggerFactory.getLogger(SpellBookViewer.class);
+
+    @Override
+    public EventDispatchChain buildEventDispatchChain(EventDispatchChain tail) {
+        // prepend all event dispatchers from this node to the root
+        logger.debug("EventDispatchChain");
+
+        Node curNode = this;
+        do {
+            if (curNode.eventDispatcherProperty() != null) {
+                final EventDispatcher eventDispatcherValue =
+                        curNode.eventDispatcherProperty().get();
+                if (eventDispatcherValue != null) {
+                    logger.debug("prepending eventDispatcher for {} ({})", curNode, eventDispatcherValue);
+                    NodeEventDispatcher d = (NodeEventDispatcher)eventDispatcherValue;
+                    tail = tail.prepend(eventDispatcherValue);
+                }
+            }
+            final Node curParent = curNode.getParent();
+            curNode = curParent != null ? curParent : NodeHelper.getSubScene(curNode);
+        } while (curNode != null);
+
+        if (getScene() != null) {
+            // prepend scene's dispatch chain
+            tail = getScene().buildEventDispatchChain(tail);
+        }
+
+        return tail;
+
+    }
+
+    private ObjectProperty<EventHandler<GameEvent>> onSpellChosen= new ObjectPropertyBase<EventHandler<GameEvent>>() {
+        @Override
+        protected void invalidated() {
+            setEventHandler(GameEvent.GAME, get());
+        }
+
+        @Override
+        public Object getBean() {
+            return SpellBookViewer.this;
+        }
+
+        @Override
+        public String getName() {
+            return "onAction";
+        }
+    };
+
+    public EventHandler<GameEvent> getOnSpellChosen() {
+        return onSpellChosen.get();
+    }
+
+    public ObjectProperty<EventHandler<GameEvent>> onSpellChosenProperty() {
+        return onSpellChosen;
+    }
+
+    public void setOnSpellChosen(EventHandler<GameEvent> onSpellChosen) {
+        this.onSpellChosen.set(onSpellChosen);
+    }
+
+    private SimpleObjectProperty<PlannedSpells> plannedSpells = new SimpleObjectProperty<PlannedSpells>();
+    private SimpleObjectProperty<Player> player = new SimpleObjectProperty<Player>();
+    private final StackPane stackPane;
+    private final BorderPane borderPane;
+    private final Button leftButton;
+    private final Button rightButton;
+    private final Button okButton;
+    private int curPane;
+    private boolean spellsSelectable;
+    private SpellBook spellBook;
+    private GridPane gridPane;
+    List<String> selectLabels;
+    IdentityHashMap<CardView, CardViewSelectionData> cardViewMap;
+    IdentityHashMap<SpellSlot, CardView> spellSlotMap;
+    List<SpellSlot> spellSlotList;
+    Stack<SpellSlot> openSpellSlots;
+
+    class SpellSlot
+    {
+        SpellSlot(String spellSlotName, SpellCaster spellCaster,
+                  Property<PlayerCard> property)
+        {
+            this.spellCaster = spellCaster;
+            this.spellSlotName = spellSlotName;
+            this.playerCardProperty = property;
+        }
+        SpellSlot(String spellSlotName, SpellCaster spellCaster, SpellCasterCard spellCasterCard)
+        {
+            this.spellCaster = spellCaster;
+            this.spellSlotName = spellSlotName;
+            this.castingSpellCasterCard = spellCasterCard;
+            this.playerCardProperty = new SimpleObjectProperty<PlayerCard>();
+        }
+        String spellSlotName;
+        SpellCaster spellCaster;
+        Property<PlayerCard> playerCardProperty = null;
+        //1.8 Predicate<_Card> predicate;
+        Label selectedSpellLabel;
+        CardView cardView;
+        SpellCasterCard castingSpellCasterCard;
+    }
+
+
+    class CardViewSelectionData
+    {
+        boolean isSelected;
+        int spellSlotIndex;
+        SpellSlot spellSlot;
+
+    }
+
+    public void CardViewClicked(MouseEvent event, CardView cardView)
+    {
+        CardView cv = cardView;
+        logger.debug("{} clicked", cv.getId());
+        if(!spellsSelectable)
+        {
+            return;
+        }
+
+        /* Determine selection state of the CardView */
+        CardViewSelectionData selectData = cardViewMap.get(cv);
+        /* we don't need to create the Selection Data if all the spell slots are full */
+        if(selectData == null)
+        {
+            selectData = new CardViewSelectionData();
+            cardViewMap.put(cv, selectData);
+        }
+        SpellSlot newSlot = null;
+        int newSelectedIndex = 0;
+        int curIndex = 0;
+        /* IF the card is selected already, start at the spell slot index following
+        the one its currently in
+         */
+        if(selectData.isSelected)
+        {
+            curIndex = selectData.spellSlotIndex + 1;
+        }
+
+        SpellSlot slot;
+        while(curIndex < spellSlotList.size())
+        {
+            slot = spellSlotList.get(curIndex);
+            /* if the current slot will accept the card */
+            if(slot.cardView == null &&
+                    (slot.castingSpellCasterCard == null || slot.castingSpellCasterCard.canCast(cv.getCard())))
+            {
+                newSlot = slot;
+                newSelectedIndex = curIndex;
+                break;
+            }
+            curIndex++;
+        }
+        /* if we're moving the card to the next available slot or deselecting it */
+        if(selectData.isSelected && selectData.spellSlot != null)
+        {
+            //selectData.spellSlot.selectedSpellLabel.setText("");
+            selectData.spellSlot.cardView = null;
+            selectData.spellSlot.playerCardProperty.setValue(null);
+        }
+        /* if there's an available slot */
+        if(newSlot != null)
+        {
+            selectData.spellSlot = newSlot;
+            selectData.spellSlotIndex = newSelectedIndex;
+            selectData.isSelected = true;
+            newSlot.cardView = cv;
+            //newSlot.selectedSpellLabel.setText(cv.getCard().getCardName());
+            selectData.spellSlot.playerCardProperty.setValue(cv.getPlayerCard());
+
+        }
+        /* if not we're unselecting */
+        else if(selectData.isSelected)
+        {
+            selectData.isSelected = false;
+            selectData.spellSlot = null;
+            selectData.spellSlot.playerCardProperty.setValue(null);
+        }
+/*
+        if(cv.getStyleClass().contains("selectedcard"))
+        {
+            cv.getStyleClass().add("canbeselected");
+            cv.getStyleClass().remove("selectedcard");
+        }
+        else
+        {
+            Circle c = new Circle(30, 30, 20);
+            Label l = new Label("1");
+            l.setFont(new Font("Verdana", 24));
+            l.setTextFill(Color.WHITE);
+            l.setLayoutX(22);
+            l.setLayoutY(15);
+            Group g  = new Group(c, l);
+            cv.getChildren().add(g);
+            cv.getStyleClass().remove("canbeselected");
+            cv.getStyleClass().add("selectedcard");
+            //Label selectedLabel = new Label(selectLabels.get(0));
+        }
+
+        //cv.setBlendMode(cv.getBlendMode().ordinal() + 1);
+*/
+
+    }
+
+    /* We won't necessarily instantiate this object every time spells must be selected,
+        and our "spell slots" will change as the game progresses.
+     */
+    SpellBookViewer(CardViewManager cardViewManager, Player player, SpellBook spellBook, final PlannedSpells plannedSpells)
+    {
+        super();
+
+        this.player.set(player);
+
+        logger.info("Planned spells supplied is {}", plannedSpells);
+
+        this.spellsSelectable = true;
+        this.spellBook = spellBook;
+
+        this.plannedSpells.setValue(plannedSpells);
+
+        spellSlotList = new ArrayList<SpellSlot>();
+        /* Always have the two mage slots */
+        spellSlotList.add(new SpellSlot("Spell 1",
+                spellBook.getOwner(), getPlannedSpells().firstSpellProperty()));
+        spellSlotList.add(new SpellSlot("Spell 2",
+                spellBook.getOwner(), getPlannedSpells().secondSpellProperty()));
+
+        List<SpellCasterCard> spawnpoints = player.getSpawnpoints();
+        for(SpellCasterCard card:spawnpoints)
+        {
+            spellSlotList.add(new SpellSlot(card.getCardName(), spellBook.getOwner(), card));
+        }
+        for(SpellCasterCard card:player.getFamiliars())
+        {
+            spellSlotList.add(new SpellSlot(card.getCardName(), spellBook.getOwner(), card));
+        }
+
+        openSpellSlots = new Stack<SpellSlot>();
+        openSpellSlots.addAll(spellSlotList);
+
+        cardViewMap = new IdentityHashMap<CardView, CardViewSelectionData>();
+
+        borderPane = new BorderPane();
+        HBox centerHbox = new HBox();
+        centerHbox.setAlignment(Pos.CENTER);
+
+        leftButton = new Button("<");
+        leftButton.setId("spellbook-previous-page-button");
+        stackPane = new StackPane();
+        rightButton = new Button(">");
+        rightButton.setId("spellbook-next-page-button");
+        centerHbox.getChildren().addAll(leftButton, stackPane, rightButton);
+
+        VBox chosenSpells = new VBox();
+        Label selectedSpellsLabel = new Label("Selected Spells");
+        selectedSpellsLabel.setId("selected-spells-label");
+
+        chosenSpells.getChildren().addAll(selectedSpellsLabel);
+        for(final SpellSlot s:spellSlotList)
+        {
+            Label l = new Label(s.spellSlotName);
+            l.setId(s.spellSlotName.toLowerCase().replace(' ', '-').concat("-slot-label"));
+            s.selectedSpellLabel = new Label("");
+            s.selectedSpellLabel.setId("selected-" + l.getId());
+            assert s.playerCardProperty != null;
+
+            s.selectedSpellLabel.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
+                @Override
+                public String call() throws Exception {
+                    //assert s.playerCardProperty.getValue() != null;
+                    //assert s.playerCardProperty.getValue().getCard() != null;
+                    return s.playerCardProperty.getValue() == null ? "" : s.playerCardProperty.getValue().getCard().getCardName();
+                }
+            }, s.playerCardProperty));
+            chosenSpells.getChildren().addAll(l, s.selectedSpellLabel);
+        }
+
+        final SpellBookViewer viewer1 = this;
+
+        okButton = new Button("OK");
+        okButton.disableProperty().bind(getPlannedSpells().completedPlanningProperty().not());
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                viewer1.spellsSelectable = false;
+                //getPlannedSpells().setFirstSpell(spellSlotList.get(0).cardView.getPlayerCard());
+                //getPlannedSpells().setSecondSpell(spellSlotList.get(1).cardView.getPlayerCard());
+
+                //((Stage)viewer1.getScene().getWindow()).hide();
+                PlanSpellsEvent planSpellsEvent = new PlanSpellsEvent(null, SpellBookViewer.this,
+                        PlanSpellsEvent.SPELLS_PLANNED, getPlayer(), getPlannedSpells());
+
+                logger.debug("firing event {}", planSpellsEvent);
+                actionEvent.consume();
+                EventUtil.fireEvent(SpellBookViewer.this, planSpellsEvent);
+                //GameEvent.fireEvent();
+            }
+        });
+        chosenSpells.getChildren().add(okButton);
+
+        borderPane.setRight(chosenSpells);
+
+        borderPane.setPadding(new Insets(5));
+        this.getChildren().add(borderPane);
+        //stackPane.getTransforms().add(new Scale(.75, .75));
+
+        borderPane.setCenter(centerHbox);
+
+        int maxRows = 2;
+        int maxCols = 4;
+        int maxCards = maxRows * maxCols;
+        List<PlayerCard> cards = spellBook.getCards();
+        //Queue<_Card> q;
+        Queue<PlayerCard> cardQueue = new LinkedList<PlayerCard>();
+        for(PlayerCard card:cards)
+        {
+            cardQueue.add(card);
+        }
+
+        final int numPanes = cards.size() / maxCards + ((cards.size() % maxCards != 0) ? 1 : 0);
+
+        int cardIndex = 0;
+        final GridPane gridPanes[] = new GridPane[numPanes];
+
+        leftButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if(curPane > 0)
+                {
+                    gridPanes[curPane].setVisible(false);
+                    curPane --;
+                    gridPanes[curPane].setVisible(true);
+                }
+            }
+        });
+        rightButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                {
+                    if(curPane + 1 < numPanes)
+                    {
+                        gridPanes[curPane].setVisible(false);
+                        curPane ++;
+                        gridPanes[curPane].setVisible(true);
+                    }
+                }
+            }
+        });
+
+        for(int paneIndex = 0; paneIndex < numPanes; paneIndex++)
+        {
+            gridPanes[paneIndex] = gridPane = new GridPane();
+            gridPane.setId(String.format("spellbook-page-%d-gridpane", paneIndex + 1));
+
+            if(paneIndex > 0)
+            {
+                gridPane.setVisible(false);
+            }
+
+            //gridPane.setGridLinesVisible(true);
+            gridPane.setVgap(10);
+            gridPane.setHgap(10);
+            gridPane.setPadding(new Insets(10));
+            stackPane.getChildren().add(gridPane);
+
+            int col = 0;
+            int row = 0;
+            List<CardView> cardViews = new ArrayList<CardView>(maxRows * maxCols);
+            for(row = 0; row < maxRows; row++)
+            {
+                for(col = 0; col < maxCols; col++)
+                {
+                    if(cardQueue.isEmpty())
+                    {
+                        continue;
+                    }
+                    PlayerCard curCard = cardQueue.remove();
+
+                    final CardView cv = cardViewManager.createCardView(curCard);
+                    cv.setId(String.format("cardview-%d-%d-%d", paneIndex + 1, col + 1, row + 1));
+
+                    cv.getStyleClass().add("canbeselected");
+                    //cv.setPadding(new Insets(10));
+                    cardViews.add(cv);
+
+                    //CardViewClicked cardViewClicked = new CardViewClicked();
+                    //cardViewClicked.cardView = cv;
+                    //cv.setOnMouseClicked(cardViewClicked);
+                    final SpellBookViewer viewer = this;
+                    cv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            viewer.CardViewClicked(event, cv);
+                        }
+                    });
+                    gridPane.add(cv, col, row);
+                }
+            }
+        }
+    }
+
+    public PlannedSpells getPlannedSpells() {
+        return plannedSpells.get();
+    }
+
+    public SimpleObjectProperty<PlannedSpells> plannedSpellsProperty() {
+        return plannedSpells;
+    }
+
+    public void setPlannedSpells(PlannedSpells plannedSpells) {
+        this.plannedSpells.set(plannedSpells);
+    }
+
+    public Player getPlayer() {
+        return player.get();
+    }
+
+    public SimpleObjectProperty<Player> playerProperty() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player.set(player);
+    }
+}
+*/

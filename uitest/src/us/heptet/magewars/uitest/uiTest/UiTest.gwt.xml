@@ -1,0 +1,15 @@
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.0//EN"
+        "http://google-web-toolkit.googlecode.com/svn/releases/2.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="UiTest">
+
+    <!-- Inherit the core Web Toolkit stuff.                  -->
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="us.heptet.magewars.ui"/>
+    <inherits name="us.heptet.magewars.domain.Domain"/>
+    <inherits name="us.heptet.gwt.JfxBeans"/>
+
+    <!-- Specify the app entry point class.                   -->
+    <entry-point class='us.heptet.magewars.uitest.uiTest.client.UiTest'/>
+     <servlet path='/UiTestService' class='us.heptet.magewars.uitest.uiTest.server.UiTestServiceImpl'/>
+
+</module>

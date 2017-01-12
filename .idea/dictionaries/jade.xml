@@ -1,0 +1,32 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="jade">
+    <words>
+      <w>activatable</w>
+      <w>attackable</w>
+      <w>beastmaster</w>
+      <w>cookiename</w>
+      <w>creategamebutton</w>
+      <w>gameconfig</w>
+      <w>gamedetailstable</w>
+      <w>gamename</w>
+      <w>gamenamebox</w>
+      <w>gameservice</w>
+      <w>gwtid</w>
+      <w>joingamebutton</w>
+      <w>loginbtn</w>
+      <w>magewars</w>
+      <w>mana</w>
+      <w>okbutton</w>
+      <w>passwordbox</w>
+      <w>quickcast</w>
+      <w>signup</w>
+      <w>signupbutton</w>
+      <w>signuplink</w>
+      <w>signupusernamebox</w>
+      <w>spellbook</w>
+      <w>spellbooktree</w>
+      <w>usernamebox</w>
+      <w>webapp</w>
+    </words>
+  </dictionary>
+</component>

@@ -1,0 +1,35 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+    <servlet>
+        <description>AtmosphereServlet</description>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+        <init-param>
+            <param-name>org.atmosphere.cpr.AtmosphereInterceptor</param-name>
+            <param-value>org.atmosphere.gwt20.server.GwtRpcInterceptor</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.atmosphere.cache.UUIDBroadcasterCache.clientIdleTime</param-name>
+            <param-value>300</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.atmosphere.cpr.asyncSupport</param-name>
+            <param-value>org.atmosphere.container.Jetty9AsyncSupportWithWebSocket</param-value>
+        </init-param>
+        <!--<init-param>
+            <param-name>org.atmosphere.cpr.AtmosphereInterceptor.disableDefaults</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        -->
+        <load-on-startup>1</load-on-startup>
+        <!--Uncomment if you want to use Servlet 3.0 Async Support-->
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>

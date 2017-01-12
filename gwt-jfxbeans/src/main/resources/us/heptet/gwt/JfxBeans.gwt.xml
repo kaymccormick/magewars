@@ -1,0 +1,5 @@
+<module>
+<inherits name='com.google.gwt.user.User'/>
+<super-source path='jfxbeans'/>
+    <source path="jfxbeanstest"/>
+</module>

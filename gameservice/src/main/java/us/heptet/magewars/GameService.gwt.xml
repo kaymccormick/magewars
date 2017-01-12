@@ -1,0 +1,6 @@
+<module>
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name="us.heptet.magewars.Game"/>
+    <source path="gameservice/core/events"/>
+    <source path="gameservice/core/exceptions"/>
+</module>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_resmod" default="compile.module.resmod">
+  <dirname property="module.resmod.basedir" file="${ant.file.module_resmod}"/>
+  
+  <property name="module.jdk.home.resmod" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.resmod" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.resmod" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.resmod" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="resmod.output.dir" value="${module.resmod.basedir}/../out/production/resmod"/>
+  <property name="resmod.testoutput.dir" value="${module.resmod.basedir}/../out/test/resmod"/>
+  
+  <path id="resmod.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="resmod.module.production.classpath">
+    <path refid="${module.jdk.classpath.resmod}"/>
+  </path>
+  
+  <path id="resmod.runtime.production.module.classpath">
+    <pathelement location="${resmod.output.dir}"/>
+  </path>
+  
+  <path id="resmod.module.classpath">
+    <path refid="${module.jdk.classpath.resmod}"/>
+    <pathelement location="${resmod.output.dir}"/>
+  </path>
+  
+  <path id="resmod.runtime.module.classpath">
+    <pathelement location="${resmod.testoutput.dir}"/>
+    <pathelement location="${resmod.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.resmod">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.resmod">
+    <patternset refid="excluded.from.module.resmod"/>
+  </patternset>
+  
+  
+  <target name="compile.module.resmod" depends="compile.module.resmod.production,compile.module.resmod.tests" description="Compile module resmod"/>
+  
+  <target name="compile.module.resmod.production" description="Compile module resmod; production classes"/>
+  
+  <target name="compile.module.resmod.tests" depends="compile.module.resmod.production" description="compile module resmod; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.resmod" description="cleanup module">
+    <delete dir="${resmod.output.dir}"/>
+    <delete dir="${resmod.testoutput.dir}"/>
+  </target>
+</project>

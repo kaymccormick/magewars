@@ -1,0 +1,55 @@
+this file was a backup of a file that got deleted, and much was lost.
+so starting a new file but saving this one
+
+ArenaObjectView
+ * currentPhaseProperty (checks instanceof creatureactionphase to determine whether to handle actionmarker click)
+  * setArenaCreature [ creatureActionPhase adds a listener to this property to change the property PlayerGameState.ActionMarkerEnabled to false
+    		       and to setReadyToComplete to true - setReadyToComplete was a stopgap for not having a "do nothing" action button
+		       ActionMarkerEnabled is different from the underlying ArenaCreature property that determines if the creature has yet
+		       to be used during the turn that causes the "star" to appear.
+		      
+		      under what conditions should the active/action marker be enabled?
+		      	    it is the beginning of a creature action phase on the players turn, before any creatures have been acivated
+
+
+
+ ]
+
+
+ArenaCreatureView
+* currentPhaseProperty -> new QuickcastUiAction
+  * setArenaCreature
+  * passAction
+* getPlayerGameState [actingPlayer] [intermediate object] [ can be obtained through controlling player ? ]
+  * setActiveCreature [ never queried, pending deletion ]
+  * current[Ui]ActionProperty [ may be unused but is necessary for cancelling UiAction - created UiAction has to go somewhere ]
+    * bind	-> actionView.currentActionProperty
+    * unbind
+    * set [ through setCurrentAction / conflicts with bind and thus unbound ]
+* getActingPlayer [ same as arenaCreature.getControllingPlayer - redundant ]
+* getPlannedSpells (obsolete)
+
+UiAction needs access to the current phase
+current phase is accessed through the Game object
+ArenaCreatureView, in general, must access shared state
+if not accessed through Game object, still needs an intermediary
+can construct view with reference to interface (called?)
+
+only must have is access to the current phase.
+--why - 
+
+      UiAction.selectionCompleted calls Phase.consumeAction
+-- this is the ONLY reason it needs the phase - should verify
+-- a functional interface could be used in place
+
+arenacreatureview - creates QuickcastUiAction - click handler for QuickcastMarker displays spell panel and click on spell creates QuickcastUiAction
+CreatureActionView - handles most (all?) other creature actions
+ * needs CreatureActionPhase (Phase subtype)
+   * set in ViewManager.getCreatureActionView [ thus viewManager also needs Game object ]
+
+ViewManager
+ * needs Game for SelectionState
+ * binds CreatureActionView.SelectionState to Game.SelectionState
+ * same for ArenaObjectView
+ * same for ZoneView (except zoneView does not take Game object)
+

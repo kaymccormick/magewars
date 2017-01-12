@@ -1,0 +1,13 @@
+<!DOCTYPE aspectj PUBLIC
+        "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+    <weaver>
+        <!-- only weave classes in this package -->
+        <include within="us.heptet.magewars.webapp.server.atmosphere.*" />
+        <dump within="us.heptet.magewars.webapp.server.atmosphere.*" />
+    </weaver>
+    <aspects>
+        <!-- Spring provided AspectJ aspect (in spring-aspects.jar) -->
+        <aspect name="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect" />
+    </aspects>
+</aspectj>

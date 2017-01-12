@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:p="urn:import:us.heptet.magewars.webapp.client.view">
+    <g:FlowPanel>
+        <g:Label>hello</g:Label>
+<!--        <g:FlowPanel ui:field="loginFlowPanel"></g:FlowPanel>
+        <g:Label>goodbye</g:Label>-->
+        <p:LoginViewImpl ui:field="loginView"/>
+    </g:FlowPanel>
+</ui:UiBinder>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_magewars" default="compile.module.magewars">
+  <dirname property="module.magewars.basedir" file="${ant.file.module_magewars}"/>
+  
+  <property name="module.jdk.home.magewars" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.magewars" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.magewars" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.magewars" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="magewars.output.dir" value="${module.magewars.basedir}/bin"/>
+  <property name="magewars.testoutput.dir" value="${module.magewars.basedir}/bin"/>
+  
+  <path id="magewars.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="magewars.module.production.classpath">
+    <path refid="${module.jdk.classpath.magewars}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <pathelement location="${domain-test.output.dir}"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <path refid="library.guava-14.0.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+  </path>
+  
+  <path id="magewars.runtime.production.module.classpath">
+    <pathelement location="${magewars.output.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${domain-test.output.dir}"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <path refid="library.guava-14.0.1.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  <path id="magewars.module.classpath">
+    <pathelement location="${magewars.output.dir}"/>
+    <path refid="${module.jdk.classpath.magewars}"/>
+    <pathelement location="${idea.home}/plugins/testng/lib/testng.jar"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <pathelement location="${domain-test.testoutput.dir}"/>
+    <pathelement location="${domain-test.output.dir}"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <path refid="library.guava-14.0.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+  </path>
+  
+  <path id="magewars.runtime.module.classpath">
+    <pathelement location="${magewars.output.dir}"/>
+    <pathelement location="${idea.home}/plugins/testng/lib/testng.jar"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${domain-test.testoutput.dir}"/>
+    <pathelement location="${domain-test.output.dir}"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <path refid="library.guava-14.0.1.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.gwt-dev.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.magewars">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.magewars">
+    <patternset refid="excluded.from.module.magewars"/>
+  </patternset>
+  
+  <path id="magewars.module.sourcepath">
+    <dirset dir="${module.magewars.basedir}/jfxapp">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="magewars.module.test.sourcepath">
+    <dirset dir="${module.magewars.basedir}/jfxapp">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.magewars" depends="compile.module.magewars.production,compile.module.magewars.tests" description="Compile module magewars"/>
+  
+  <target name="compile.module.magewars.production" depends="compile.module.domain,compile.module.domain-test,compile.module.ui,compile.module.gwt-jfxbeans,compile.module.game" description="Compile module magewars; production classes">
+    <mkdir dir="${magewars.output.dir}"/>
+    <javac destdir="${magewars.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.magewars}/javac">
+      <compilerarg line="${compiler.args.magewars}"/>
+      <bootclasspath refid="magewars.module.bootclasspath"/>
+      <classpath refid="magewars.module.production.classpath"/>
+      <src refid="magewars.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.magewars"/>
+    </javac>
+    
+    <copy todir="${magewars.output.dir}">
+      <fileset dir="${module.magewars.basedir}/jfxapp/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.magewars.tests" depends="compile.module.magewars.production" description="compile module magewars; test classes" unless="skip.tests">
+    <mkdir dir="${magewars.testoutput.dir}"/>
+    <javac destdir="${magewars.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.magewars}/javac">
+      <compilerarg line="${compiler.args.magewars}"/>
+      <bootclasspath refid="magewars.module.bootclasspath"/>
+      <classpath refid="magewars.module.classpath"/>
+      <src refid="magewars.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.magewars"/>
+    </javac>
+    
+    <copy todir="${magewars.testoutput.dir}">
+      <fileset dir="${module.magewars.basedir}/jfxapp/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.magewars" description="cleanup module">
+    <delete dir="${magewars.output.dir}"/>
+    <delete dir="${magewars.testoutput.dir}"/>
+  </target>
+</project>

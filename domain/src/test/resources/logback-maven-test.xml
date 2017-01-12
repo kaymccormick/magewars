@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!-- domain logback test logback.xml -->
+    <property resource="logback-test.properties"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/domain-test.log</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <include file="logback/spring-quiet.xml"/>
+
+    <logger name="org.hibernate" level="null"/>
+    <logger name="org.hibernate.SQL" level="trace">
+    </logger>
+    <logger name="us.heptet" level="debug">
+    </logger>
+    <logger name="org.apache.http.wire" level="info"/>
+    <root level="trace">
+        <appender-ref ref="OUTFILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

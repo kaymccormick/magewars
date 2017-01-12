@@ -1,0 +1,843 @@
+var cards = {
+    "ADRAMELECH_LORD_OF_FIRE": {
+        "actionSpeed": "FULL",
+        "allSchools": true,
+        "armor": 3,
+        "attacks": {
+            "Hellfire Scythe": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "FLAME",
+                "numDice": 6
+            },
+            "Hellfire Sweep": {
+                "actionSpeed": "FULL",
+                "attackType": "RANGED",
+                "damageType": "FLAME",
+                "numDice": 4
+            }
+        },
+        "cardName": "Adramelech, Lord of Fire",
+        "castCost": 24,
+        "channeling": 0,
+        "life": 14,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "DEMON"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "FLYING",
+            "FLAME_IMMUNITY",
+            "LEGENDARY"
+        ]
+    },
+    "AGONY": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Agony",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "CURSE"
+        ],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "ANIMAL_KINSHIP": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 3,
+        "attacks": {},
+        "cardName": "Animal Kinship",
+        "castCost": 8,
+        "channeling": 0,
+        "life": 7,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CONJURATION",
+        "traits": [
+            "ZONE_EXCLUSIVE",
+            "BEASTMASTER_ONLY"
+        ]
+    },
+    "ARCANE_RING": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Arcane Ring",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "ASYRAN_CLERIC": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 3,
+        "attacks": {
+            "Staff": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 2
+            }
+        },
+        "cardName": "Asyran Cleric",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 14,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "CLERIC"
+        ],
+        "spellType": "CREATURE",
+        "traits": []
+    },
+    "BANISH": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Banish",
+        "castCost": 14,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "TELEPORT"
+        ],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "BATTLE_FORGE": {
+        "actionSpeed": "QUICK",
+        "allSchools": true,
+        "armor": 4,
+        "attacks": {},
+        "cardName": "Battle Forge",
+        "castCost": 8,
+        "channeling": 0,
+        "life": 6,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CONJURATION",
+        "traits": [
+            "FLAME_IMMUNITY",
+            "ZONE_EXCLUSIVE",
+            "SPAWNPOINT"
+        ]
+    },
+    "BATTLE_FURY": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Battle Fury",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "COMMAND"
+        ],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "BEARSKIN": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Bearskin",
+        "castCost": 6,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "BEAR_STRENGTH": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Bear Strength",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "BITTERWOOD_FOX": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {
+            "Bite": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 3
+            }
+        },
+        "cardName": "Bitterwood Fox",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 5,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "ANIMAL",
+            "CANINE"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "FAST"
+        ]
+    },
+    "BLOCK": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Block",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 2,
+        "minRange": 0,
+        "spellSubTypes": [
+            "FORCE",
+            "DEFENSE"
+        ],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "BLUE_GREMLIN": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 1,
+        "attacks": {
+            "Claws": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 3
+            }
+        },
+        "cardName": "Blue Gremlin",
+        "castCost": 7,
+        "channeling": 0,
+        "life": 7,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "GREMLIN"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "PEST"
+        ]
+    },
+    "BROGAN_BLOODSTONE": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 4,
+        "attacks": {
+            "Varpal Blade": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 4
+            }
+        },
+        "cardName": "Brogan Bloodstone",
+        "castCost": 15,
+        "channeling": 0,
+        "life": 11,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "KNIGHT",
+            "SOLDIER"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "LEGENDARY"
+        ]
+    },
+    "BULL_ENDURANCE": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Bull Endurance",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "CALL_OF_THE_WILD": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Call of the Wild",
+        "castCost": 4,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "CERVERE_THE_FOREST_SHADOW": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 2,
+        "attacks": {
+            "Claws & Bite": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 4
+            }
+        },
+        "cardName": "Cervere, The Forest Shadow",
+        "castCost": 15,
+        "channeling": 0,
+        "life": 11,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "ANIMAL",
+            "CAT"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "LEGENDARY",
+            "FAST",
+            "ELUSIVE"
+        ]
+    },
+    "CHAINS_OF_AGONY": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Chains of Agony",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "CURSE"
+        ],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "CHARGE": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Charge",
+        "castCost": 4,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "COMMAND"
+        ],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "CHARM": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Charm",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "PSYCHIC",
+            "CONTROL"
+        ],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "CHEETAH_SPEED": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Cheetah Speed",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "CIRCLE_OF_FIRE": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Circle of Fire",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "FLAME",
+            "BARRIER"
+        ],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "COBRA_REFLEXES": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Cobra Reflexes",
+        "castCost": 2,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "DEFENSE"
+        ],
+        "spellType": "ENCHANTMENT",
+        "traits": []
+    },
+    "CROWN_OF_PROTECTION": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Crown of Protection",
+        "castCost": 1,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "DANCING_SCIMITAR": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {
+            "Flying Slash": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 3
+            }
+        },
+        "cardName": "Dancing Scimitar",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": [
+            "AUTONOMOUS"
+        ]
+    },
+    "DARKFENNE_BAT": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {
+            "Diseased Bite": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 2
+            }
+        },
+        "cardName": "Darkfenne Bat",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 14,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "ANIMAL",
+            "BAT"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "FLYING"
+        ]
+    },
+    "DARKFENNE_HYDRA": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 1,
+        "attacks": {
+            "Snapping Bite": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 4
+            },
+            "Triple Bite": {
+                "actionSpeed": "FULL",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 3
+            }
+        },
+        "cardName": "Darkfenne Hydra",
+        "castCost": 16,
+        "channeling": 0,
+        "life": 15,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "SERPENT"
+        ],
+        "spellType": "CREATURE",
+        "traits": [
+            "SLOW"
+        ]
+    },
+    "DARK_PACT_SLAYER": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 2,
+        "attacks": {
+            "Hellsword": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 4
+            }
+        },
+        "cardName": "Dark Pact Slayer",
+        "castCost": 13,
+        "channeling": 0,
+        "life": 14,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "DEMON"
+        ],
+        "spellType": "CREATURE",
+        "traits": []
+    },
+    "DAWNBREAKER_RING": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Dawnbreaker Ring",
+        "castCost": 3,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "DEATHLOCK": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 2,
+        "attacks": {},
+        "cardName": "Deathlock",
+        "castCost": 9,
+        "channeling": 0,
+        "life": 9,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CONJURATION",
+        "traits": [
+            "EPIC",
+            "ZONE_EXCLUSIVE"
+        ]
+    },
+    "DEFENSE_RING": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Defense Ring",
+        "castCost": 3,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "DEFLECTION_BRACERS": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Deflection Bracers",
+        "castCost": 6,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "DEMONHIDE_ARMOR": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Demonhide Armor",
+        "castCost": 8,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "DISPEL": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Dispel",
+        "castCost": 0,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "METAMAGIC"
+        ],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "DISSOLVE": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Dissolve",
+        "castCost": 0,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "ACID"
+        ],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "DRAGONSCALE_HAUBERK": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Dragonscale Hauberk",
+        "castCost": 6,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "EQUIPMENT",
+        "traits": []
+    },
+    "DWARF_KRIEGSBIEL": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 3,
+        "attacks": {
+            "Chop": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 4
+            },
+            "Sweeping _Attack": {
+                "actionSpeed": "FULL",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 4
+            }
+        },
+        "cardName": "Dwarf Kriegsbiel",
+        "castCost": 11,
+        "channeling": 0,
+        "life": 9,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [
+            "SOLDIER",
+            "DWARF"
+        ],
+        "spellType": "CREATURE",
+        "traits": []
+    },
+    "EARTHQUAKE": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Earthquake",
+        "castCost": 9,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "INCANTATION",
+        "traits": []
+    },
+    "GOBLIN_BUILDER": {
+        "actionSpeed": "FULL",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {
+            "Hammer": {
+                "actionSpeed": "QUICK",
+                "attackType": "MELEE",
+                "damageType": "NONE",
+                "numDice": 2
+            }
+        },
+        "cardName": "Goblin Builder",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 6,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CREATURE",
+        "traits": [
+            "PEST",
+            "FAMILIAR"
+        ]
+    },
+    "MANA_CRYSTAL": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 2,
+        "attacks": {},
+        "cardName": "Mana Crystal",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 6,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CONJURATION",
+        "traits": [
+            "FLAME_IMMUNITY",
+            "ZONE_EXCLUSIVE"
+        ]
+    },
+    "MANA_FLOWER": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Mana Flower",
+        "castCost": 5,
+        "channeling": 0,
+        "life": 6,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CONJURATION",
+        "traits": [
+            "ZONE_EXCLUSIVE",
+            "LIVING",
+            "HYDRO_IMMUNITY"
+        ]
+    },
+    "MANA_SIPHON": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Mana Siphon",
+        "castCost": 12,
+        "channeling": 0,
+        "life": 9,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "CONJURATION",
+        "traits": [
+            "EPIC",
+            "ZONE_EXCLUSIVE",
+            "INCORPOREAL"
+        ]
+    },
+    "SHIFT_ENCHANTMENT": {
+        "actionSpeed": "QUICK",
+        "allSchools": false,
+        "armor": 0,
+        "attacks": {},
+        "cardName": "Shift Enchantment",
+        "castCost": 0,
+        "channeling": 0,
+        "life": 0,
+        "maxRange": 0,
+        "minRange": 0,
+        "spellSubTypes": [],
+        "spellType": "INCANTATION",
+        "traits": []
+    }
+}

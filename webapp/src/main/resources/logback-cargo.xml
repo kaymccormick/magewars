@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- webapp cargo logback test logback.xml -->
+
+    <!-- this isn't a test resource, so does logback-test belong??? -->
+    <property resource="logback-test.properties"/>
+
+    <property resource="global-logback.properties"/>
+    <property resource="webapp-cargo-logback.properties"/>
+
+    <include resource="logback/properties.xml"/>
+
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <encoder>
+            <pattern>cargo %d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}webapp-cargo${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>${longdate} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="HEPTETOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}webapp-cargo-heptet${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>${longdate} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="HIBEROUT" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}webapp-cargo-hibernate${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>${longdate} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <include resource="logback/atmosphere-quiet.xml"/>
+    <include resource="logback/spring-quiet.xml"/>
+
+    <logger name="org.hibernate" level="null" additivity="false">
+        <appender-ref ref="HIBEROUT"/>
+    </logger>
+    <!--<logger name="org.hibernate.SQL" level="debug">-->
+        <!-- experiment with conditions yay -->
+        <!--
+                <if condition='!isNull("sql-to-stdout")'>
+                    <then>
+                        <appender-ref ref="STDOUT"/>
+                    </then>
+                </if>
+                -->
+
+    <!--<logger name="org.hibernate.type" level="trace">
+        <appender-ref ref="STDOUT"/>
+    </logger>-->
+    <!--
+    <logger name="us.heptet" level="trace">
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    -->
+    <logger name="us.heptet" level="debug">
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    <logger name="org.apache.http.wire" level="trace"/>
+    <root level="trace">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>

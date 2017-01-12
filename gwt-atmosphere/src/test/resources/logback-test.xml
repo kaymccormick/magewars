@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!-- domain logback test logback.xml -->
+    <property resource="global-logback.properties"/>
+    <property resource="logback-test.properties"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}gwt-atm-test${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="HEPTETOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}gwt-atm-heptet-test${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- setPlayerCard to warn to remove spam -->
+    <logger name="org.springframework" level="warn"></logger>
+
+    <!-- these are helpful to setPlayerCard to other levels for useful info -->
+    <logger name="org.springframework.web.context.support.StandardServletEnvironment" level="info"/>
+    <logger name="org.springframework.context.annotation" level="trace"/>
+    <logger name="org.springframework.context.annotation.ClassPathBeanDefinitionScanner" level="info"/>
+    <logger name="org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader" level="trace"/>
+    <logger name="org.springframework.context.annotation.ConfigurationClassPostProcessor" level="info"/>
+    <logger name="org.springframework.context.annotation.ConfigurationClassEnhancer" level="info"/>
+    <logger name="org.springframework.beans.factory.xml" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.DefaultDocumentLoader" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info"/>
+    <logger name="org.springframework.core.env.StandardEnvironment" level="info"/>
+
+    <logger name="org.hibernate" level="null"/>
+    <logger name="org.hibernate.SQL" level="debug">
+        <!-- experiment with conditions yay -->
+        <!--
+                <if condition='!isNull("sql-to-stdout")'>
+                    <then>
+                        <appender-ref ref="STDOUT"/>
+                    </then>
+                </if>
+                -->
+    </logger>
+    <logger name="us.heptet.magewars.ui.DebugEventFilter" level="info"/>
+    <!--<logger name="org.hibernate.type" level="trace">
+        <appender-ref ref="STDOUT"/>
+    </logger>-->
+    <!--
+    <logger name="us.heptet" level="trace">
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    -->
+    <logger name="us.heptet" level="trace">
+        <!--        <appender-ref ref="STDOUT" />-->
+    </logger>
+    <logger name="org.apache.http.wire" level="trace"/>
+    <root level="trace">
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>

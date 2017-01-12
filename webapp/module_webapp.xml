@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_webapp" default="compile.module.webapp">
+  <dirname property="module.webapp.basedir" file="${ant.file.module_webapp}"/>
+  
+  <property name="module.jdk.home.webapp" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.webapp" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.webapp" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.webapp" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="webapp.output.dir" value="${module.webapp.basedir}/../out/production/webapp"/>
+  <property name="webapp.testoutput.dir" value="${module.webapp.basedir}/../out/test/webapp"/>
+  
+  <path id="webapp.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="webapp.module.production.classpath">
+    <path refid="${module.jdk.classpath.webapp}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.gwt-servlet.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <pathelement location="${game.output.dir}"/>
+    <path refid="library.gin-2.1.2.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  <path id="webapp.runtime.production.module.classpath">
+    <pathelement location="${webapp.output.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${resmod.output.dir}"/>
+    <path refid="library.gwt-servlet.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+    <path refid="library.gin-2.1.2.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+  </path>
+  
+  <path id="webapp.module.classpath">
+    <path refid="${module.jdk.classpath.webapp}"/>
+    <pathelement location="${webapp.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.gwt-servlet.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+    <path refid="library.gin-2.1.2.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <path refid="library.gwt-dev.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  <path id="webapp.runtime.module.classpath">
+    <pathelement location="${webapp.testoutput.dir}"/>
+    <pathelement location="${webapp.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${resmod.testoutput.dir}"/>
+    <pathelement location="${resmod.output.dir}"/>
+    <path refid="library.gwt-servlet.classpath"/>
+    <path refid="library.cglib:cglib:3.1.classpath"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.gwt-dev.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+    <path refid="library.gin-2.1.2.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.webapp">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.webapp">
+    <patternset refid="excluded.from.module.webapp"/>
+  </patternset>
+  
+  <path id="webapp.module.sourcepath">
+    <dirset dir="${module.webapp.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="webapp.module.test.sourcepath">
+    <dirset dir="${module.webapp.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.webapp" depends="compile.module.webapp.production,compile.module.webapp.tests" description="Compile module webapp"/>
+  
+  <target name="compile.module.webapp.production" depends="compile.module.domain,compile.module.resmod,compile.module.game,compile.module.ui" description="Compile module webapp; production classes">
+    <mkdir dir="${webapp.output.dir}"/>
+    <javac destdir="${webapp.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.webapp}/javac">
+      <compilerarg line="${compiler.args.webapp}"/>
+      <bootclasspath refid="webapp.module.bootclasspath"/>
+      <classpath refid="webapp.module.production.classpath"/>
+      <src refid="webapp.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.webapp"/>
+    </javac>
+    
+    <copy todir="${webapp.output.dir}">
+      <fileset dir="${module.webapp.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.webapp.tests" depends="compile.module.webapp.production" description="compile module webapp; test classes" unless="skip.tests">
+    <mkdir dir="${webapp.testoutput.dir}"/>
+    <javac destdir="${webapp.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.webapp}/javac">
+      <compilerarg line="${compiler.args.webapp}"/>
+      <bootclasspath refid="webapp.module.bootclasspath"/>
+      <classpath refid="webapp.module.classpath"/>
+      <src refid="webapp.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.webapp"/>
+    </javac>
+    
+    <copy todir="${webapp.testoutput.dir}">
+      <fileset dir="${module.webapp.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.webapp" description="cleanup module">
+    <delete dir="${webapp.output.dir}"/>
+    <delete dir="${webapp.testoutput.dir}"/>
+  </target>
+  
+  <property name="gwt.compiler.output.webapp" value="${module.webapp.basedir}/GWTCompilerOutput_webapp"/>
+  
+  <!-- Run GWT compiler for GWT module ${gwt.module.name} -->
+  <target name="run.gwt.compiler.webapp" description="Run GWT compiler">
+    <java fork="true" jvm="${module.jdk.bin.webapp}/java" classname="com.google.gwt.dev.Compiler">
+      <jvmarg line="-Xmx1024m"/>
+      <classpath>
+        <pathelement location="${gwt.sdk.home.webapp}/gwt-dev.jar"/>
+        <path refid="webapp.module.sourcepath"/>
+        <path refid="domain.module.sourcepath"/>
+        <path refid="game.module.sourcepath"/>
+        <path refid="gwt-jfxbeans.module.sourcepath"/>
+        <path refid="ui.module.sourcepath"/>
+        <path refid="webapp.module.classpath"/>
+      </classpath>
+      <arg value="-logLevel"/>
+      <arg value="WARN"/>
+      <arg value="-war"/>
+      <arg value="${gwt.compiler.output.webapp}"/>
+      <arg value="-style"/>
+      <arg value="DETAILED"/>
+      <arg value="${gwt.module.name}"/>
+    </java>
+  </target>
+  
+  <target name="compile.gwt.webapp" depends="compile.module.webapp" description="Compile all GWT modules in module webapp">
+    <property name="gwt.sdk.home.webapp" value="${gwt.sdk.home}"/>
+    <antcall target="run.gwt.compiler.webapp">
+      <param name="gwt.module.name" value="us.heptet.magewars.webapp.WebApp"/>
+    </antcall>
+  </target>
+</project>

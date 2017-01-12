@@ -1,0 +1,48 @@
+#arenaZones {
+    width: 2304px;
+    height: 1728px;
+    table-layout: fixed;
+    border-spacing: 0px;
+}
+.zone {
+    width: 576px;
+    height: 576px;
+    background-repeat:  no-repeat;
+    background-size: cover;
+}
+#zone0-0 {
+    background-image: url("zone0-0.png");
+}
+#zone1-0 {
+    background-image: url("zone1-0.png");
+}
+#zone2-0 {
+    background-image: url("zone2-0.png");
+}
+#zone3-0 {
+    background-image: url("zone3-0.png");
+}
+#zone0-1 {
+    background-image: url("zone0-1.png");
+}
+#zone1-1 {
+    background-image: url("zone1-1.png");
+}
+#zone2-1 {
+    background-image: url("zone2-1.png");
+}
+#zone3-1 {
+    background-image: url("zone3-1.png");
+}
+#zone0-2 {
+    background-image: url("zone0-2.png");
+}
+#zone1-2 {
+    background-image: url("zone1-2.png");
+}
+#zone2-2 {
+    background-image: url("zone2-2.png");
+}
+#zone3-2 {
+    background-image: url("zone3-2.png");
+}

@@ -1,0 +1,60 @@
+#arenaZones {
+    display: -ms-grid;
+    -ms-grid-columns: 576px 576px 576px 576px
+    -ms-grid-rows: 576px 576px 576px
+    border-spacing: 0px;
+}
+.zone {
+    width: 576px;
+    height: 576px;
+    background-repeat:  no-repeat;
+    background-size: cover;
+}
+#zone0-0 {
+    background-image: url("zone0-0.png");
+    -ms-grid-column: 1; -ms-grid-row: 1;
+}
+#zone1-0 {
+    background-image: url("zone1-0.png");
+    -ms-grid-column: 2; -ms-grid-row: 1;
+}
+#zone2-0 {
+    background-image: url("zone2-0.png");
+    -ms-grid-column: 3; -ms-grid-row: 1;
+}
+#zone3-0 {
+    background-image: url("zone3-0.png");
+    -ms-grid-column: 4; -ms-grid-row: 1;
+}
+#zone0-1 {
+    background-image: url("zone0-1.png");
+    -ms-grid-column: 1; -ms-grid-row: 2;
+}
+#zone1-1 {
+    background-image: url("zone1-1.png");
+    -ms-grid-column: 2; -ms-grid-row: 2;
+}
+#zone2-1 {
+    background-image: url("zone2-1.png");
+    -ms-grid-column: 3; -ms-grid-row: 2;
+}
+#zone3-1 {
+    background-image: url("zone3-1.png");
+    -ms-grid-column: 4; -ms-grid-row: 2;
+}
+#zone0-2 {
+    background-image: url("zone0-2.png");
+    -ms-grid-column: 1; -ms-grid-row: 3;
+}
+#zone1-2 {
+    background-image: url("zone1-2.png");
+    -ms-grid-column: 2; -ms-grid-row: 3;
+}
+#zone2-2 {
+    background-image: url("zone2-2.png");
+    -ms-grid-column: 3; -ms-grid-row: 3;
+}
+#zone3-2 {
+    background-image: url("zone3-2.png");
+    -ms-grid-column: 4; -ms-grid-row: 3;
+}

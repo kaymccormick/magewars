@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_domain-test" default="compile.module.domain-test">
+  <dirname property="module.domain-test.basedir" file="${ant.file.module_domain-test}"/>
+  
+  <property name="module.jdk.home.domain-test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.domain-test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.domain-test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.domain-test" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="domain-test.output.dir" value="${module.domain-test.basedir}/../out/production/domain-test"/>
+  <property name="domain-test.testoutput.dir" value="${module.domain-test.basedir}/../out/test/domain-test"/>
+  
+  <path id="domain-test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="domain-test.module.production.classpath">
+    <path refid="${module.jdk.classpath.domain-test}"/>
+    <pathelement location="${domain.output.dir}"/>
+  </path>
+  
+  <path id="domain-test.runtime.production.module.classpath">
+    <pathelement location="${domain-test.output.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="domain-test.module.classpath">
+    <path refid="${module.jdk.classpath.domain-test}"/>
+    <pathelement location="${domain-test.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+  </path>
+  
+  <path id="domain-test.runtime.module.classpath">
+    <pathelement location="${domain-test.testoutput.dir}"/>
+    <pathelement location="${domain-test.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.domain-test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.domain-test">
+    <patternset refid="excluded.from.module.domain-test"/>
+  </patternset>
+  
+  
+  <target name="compile.module.domain-test" depends="compile.module.domain-test.production,compile.module.domain-test.tests" description="Compile module domain-test"/>
+  
+  <target name="compile.module.domain-test.production" depends="compile.module.domain" description="Compile module domain-test; production classes"/>
+  
+  <target name="compile.module.domain-test.tests" depends="compile.module.domain-test.production" description="compile module domain-test; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.domain-test" description="cleanup module">
+    <delete dir="${domain-test.output.dir}"/>
+    <delete dir="${domain-test.testoutput.dir}"/>
+  </target>
+</project>

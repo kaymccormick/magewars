@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.seleniumhq.selenium:htmlunit-driver:2.24-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/htmlunit-driver/2.24-SNAPSHOT/htmlunit-driver-2.24-20161003.040751-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/htmlunit-driver/2.24-SNAPSHOT/htmlunit-driver-2.24-20161003.040751-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/htmlunit-driver/2.24-SNAPSHOT/htmlunit-driver-2.24-20161003.040751-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

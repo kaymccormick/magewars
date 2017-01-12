@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- POM file generated with GWT webAppCreator -->
+  <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>us.heptet.magewars</groupId>
+        <artifactId>pom</artifactId>
+        <version>0.20-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+<repositories>
+  <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <layout>default</layout>
+      <url>http://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>    <repository>
+        <id>spring-milestones</id>
+        <name>Spring Milestones</name>
+        <url>http://repo.spring.io/milestone</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+
+  <artifactId>magewars-testwebapp</artifactId>
+  <packaging>jar</packaging>
+  <name>us.heptet.magewars.testwebapp</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>us.heptet.magewars</groupId>
+      <artifactId>magewars-domain</artifactId>
+    </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-commons</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-jpa</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jcl-over-slf4j</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jul-to-slf4j</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>${logbackVersion}</version>
+      </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junitVersion}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>4.1.1.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>4.1.1.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.social</groupId>
+        <artifactId>spring-social-core</artifactId>
+        <version>1.1.0.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.social</groupId>
+        <artifactId>spring-social-security</artifactId>
+        <version>1.1.0.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.social</groupId>
+        <artifactId>spring-social-twitter</artifactId>
+        <version>1.1.0.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-acl</artifactId>
+        <version>4.1.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.3.2</version>
+    </dependency>
+
+      <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.1-901-1.jdbc4</version>
+  </dependency>
+      <dependency>
+          <groupId>org.codehaus.janino</groupId>
+          <artifactId>janino</artifactId>
+          <version>2.6.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+          <version>${jacksonVersion}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>${jacksonVersion}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>${jacksonVersion}</version>
+      </dependency>
+      <dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-servlet-api</artifactId>
+<version>8.0.5</version>
+<scope>provided</scope>
+</dependency>
+</dependencies>
+</project>

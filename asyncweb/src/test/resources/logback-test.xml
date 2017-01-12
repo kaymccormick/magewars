@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!-- domain logback test logback.xml -->
+    <property resource="logback-test.properties"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/test-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="JETTYOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/jetty-test-log.txt</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ATMOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/atmosphere-test-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="HEPTETOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/asyncweb-heptet-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.eclipse.jetty" level="debug" additivity="true">
+        <appender-ref ref="JETTYOUTFILE"/>
+    </logger>
+    <logger name="org.atmosphere" level="debug" additivity="true">
+        <appender-ref ref="ATMOUTFILE"/>
+    </logger>
+    <!-- setPlayerCard to warn to remove spam -->
+    <logger name="com.ning.http" level="trace"/>
+
+    <include resource="logback/spring-quiet.xml"/>
+
+    <logger name="org.hibernate" level="null"/>
+    <logger name="org.hibernate.SQL" level="debug">
+        <!-- experiment with conditions yay -->
+        <!--
+                <if condition='!isNull("sql-to-stdout")'>
+                    <then>
+                        <appender-ref ref="STDOUT"/>
+                    </then>
+                </if>
+                -->
+    </logger>
+    <logger name="us.heptet.magewars.ui.DebugEventFilter" level="info"/>
+    <!--<logger name="org.hibernate.type" level="trace">
+        <appender-ref ref="STDOUT"/>
+    </logger>-->
+
+    <logger name="us.heptet" level="trace">
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    <logger name="org.apache.http.wire" level="trace"/>
+    <root level="trace">
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>

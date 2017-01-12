@@ -1,0 +1,34 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:style>
+        .floatleftpanel { float: left; }
+        .credtextbox { width: 4em; font-size: 16px; }
+        .outerFlowPanel { margin: 10px; }
+    </ui:style>
+    <g:FlowPanel addStyleNames="{style.outerFlowPanel}">
+        <g:Label visible="false" ui:field="statusLabel"></g:Label>
+        <g:DecoratorPanel ui:field="signupPanel">
+            <g:Grid>
+                <g:row>
+                    <g:customCell><g:Label>Username</g:Label></g:customCell>
+                    <g:customCell><g:TextBox addStyleNames="{style.credtextbox}" ui:field="username"></g:TextBox></g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell><g:Label>Password</g:Label></g:customCell>
+                    <g:customCell><g:PasswordTextBox addStyleNames="{style.credtextbox}" ui:field="password"></g:PasswordTextBox></g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell><g:Label>Confirm</g:Label></g:customCell>
+                    <g:customCell><g:PasswordTextBox addStyleNames="{style.credtextbox}" ui:field="password2"></g:PasswordTextBox></g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell><g:Label>E-Mail</g:Label></g:customCell>
+                    <g:customCell><g:TextBox addStyleNames="{style.credtextbox}" ui:field="email"></g:TextBox></g:customCell>
+                </g:row>
+                <g:row>
+                    <g:customCell><g:Button ui:field="signupButton">Sign up</g:Button></g:customCell>
+                </g:row>
+            </g:Grid>
+        </g:DecoratorPanel>
+    </g:FlowPanel>
+</ui:UiBinder>

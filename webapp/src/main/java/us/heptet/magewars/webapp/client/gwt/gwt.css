@@ -1,0 +1,122 @@
+/* TODO: migrate this to GSS */
+#spell-1-slot-label,
+#spell-2-slot-label,
+#selected-spell-1-slot-label,
+#selected-spell-2-slot-label
+{
+    background-color: white;
+    border-color: white;
+    background-radius: 5px;
+    font-size: 18pt;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+canvas {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}
+@external spellbooktree;
+.spellbooktree {
+    width: 20em;
+}
+
+@external playersTable;
+.playersTable
+{
+}
+@external playerSlotLabel;
+.playerSlotLabel
+{
+font-weight: bold;
+}
+
+.mageColumn img { width: 150px; height: 250px; }
+
+#boardpane > tbody {
+    border-spacing: 0px;
+}
+#boardpane tr {
+    border-spacing: 0px;
+}
+#boardpane tr td {
+    border-spacing: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+#arenaZones,#boardpane {
+    /*width: 2304px;
+    height: 1728px;*/
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-spacing: 0px;
+    border-width: 0px;
+    /*
+    transform: scale(.5);
+    transform-origin: 0% 0%;
+    -webkit-transform: scale(.5) rotatex(45deg);
+    perspective: 600px;*/
+
+}
+.Zone,#boardpane > tbody > tr > td > div{
+    width: 576px;
+    height: 576px;
+    background-repeat:  no-repeat;
+    background-size: cover;
+}
+
+@external CardView;
+.CardView {
+    width: 63mm;
+    height: 88mm;
+}
+
+#zone0-0 {
+    background: url("images/zone0-0.png");
+}
+#zone1-0 {
+    background-image: url("images/zone1-0.png");
+}
+#zone2-0 {
+    background-image: url("images/zone2-0.png");
+}
+#zone3-0 {
+    background-image: url("images/zone3-0.png");
+}
+#zone0-1 {
+    background-image: url("images/zone0-1.png");
+}
+#zone1-1 {
+    background-image: url("images/zone1-1.png");
+}
+#zone2-1 {
+    background-image: url("images/zone2-1.png");
+}
+#zone3-1 {
+    background-image: url("images/zone3-1.png");
+}
+#zone0-2 {
+    background-image: url("images/zone0-2.png");
+}
+#zone1-2 {
+    background-image: url("images/zone1-2.png");
+}
+#zone2-2 {
+    background-image: url("images/zone2-2.png");
+}
+#zone3-2 {
+    background-image: url("images/zone3-2.png");
+}
+
+.loginLabel {
+    font-size: 125%;
+    font-face: 'SEDEXPERSONALUSE';
+    margin: .33em;
+
+}
+
+.loginHeader {
+    text-transform: uppercase;
+    font-size: 200%;
+    font-face: 'Prominder';
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- gameservice logback test logback.xml -->
+    <property resource="logback-test.properties"/>
+
+    <property resource="global-logback.properties"/>
+
+    <include resource="logback/properties.xml"/>
+
+    <property resource="gameservice-logback.properties"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${stdoutLevel}</level>
+        </filter>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>org.eclipse.jetty</logger>
+            <level>WARN</level>
+        </filter>
+        <filter class="us.heptet.magewars.logging.ThresholdLoggerFilter">
+            <logger>org.hibernate.SQL</logger>
+            <level>INFO</level>
+        </filter>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}gameservice${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>${longdate} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <include resource="logback/spring-quiet.xml"/>
+    <logger name="org.hibernate" level="warn"/>
+    <logger name="org.hibernate.SQL" level="debug">
+        <!-- experiment with conditions yay -->
+        <!--
+                <if condition='!isNull("sql-to-stdout")'>
+                    <then>
+                        <appender-ref ref="STDOUT"/>
+                    </then>
+                </if>
+                -->
+    </logger>
+    <!--<logger name="org.hibernate.type" level="trace">
+        <appender-ref ref="STDOUT"/>
+    </logger>-->
+    <!--
+    <logger name="us.heptet" level="trace">
+        <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    -->
+<!--
+    <logger name="us.heptet" level="debug">
+        <appender-ref ref="STDOUT" />
+    </logger>
+-->
+    <logger name="org.eclipse.jetty" level="debug"/>
+    <logger name="org.apache.http.wire" level="warn"/>
+    <root level="trace">
+        <appender-ref ref="OUTFILE">
+        </appender-ref>
+        <appender-ref ref="STDOUT">
+        </appender-ref>
+    </root>
+</configuration>

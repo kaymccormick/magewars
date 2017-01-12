@@ -1,0 +1,3 @@
+Parameters needed for game configuration:
+
+    Available mages

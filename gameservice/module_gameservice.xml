@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gameservice" default="compile.module.gameservice">
+  <dirname property="module.gameservice.basedir" file="${ant.file.module_gameservice}"/>
+  
+  <property name="module.jdk.home.gameservice" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.gameservice" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.gameservice" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.gameservice" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="gameservice.output.dir" value="${module.gameservice.basedir}/../out/production/gameservice"/>
+  <property name="gameservice.testoutput.dir" value="${module.gameservice.basedir}/../out/test/gameservice"/>
+  
+  <path id="gameservice.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gameservice.module.production.classpath">
+    <path refid="${module.jdk.classpath.gameservice}"/>
+    <path refid="library.testng.classpath"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.jul-to-slf4j-1.7.6.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="gameservice.runtime.production.module.classpath">
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.jul-to-slf4j-1.7.6.classpath"/>
+  </path>
+  
+  <path id="gameservice.module.classpath">
+    <path refid="${module.jdk.classpath.gameservice}"/>
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.jul-to-slf4j-1.7.6.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+  </path>
+  
+  <path id="gameservice.runtime.module.classpath">
+    <pathelement location="${gameservice.testoutput.dir}"/>
+    <pathelement location="${gameservice.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.gwt-user.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <path refid="library.mongo-java-driver-2.12.1.classpath"/>
+    <path refid="library.jul-to-slf4j-1.7.6.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gameservice">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gameservice">
+    <patternset refid="excluded.from.module.gameservice"/>
+  </patternset>
+  
+  <path id="gameservice.module.sourcepath">
+    <dirset dir="${module.gameservice.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="gameservice.module.test.sourcepath">
+    <dirset dir="${module.gameservice.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gameservice" depends="compile.module.gameservice.production,compile.module.gameservice.tests" description="Compile module gameservice"/>
+  
+  <target name="compile.module.gameservice.production" depends="compile.module.domain" description="Compile module gameservice; production classes">
+    <mkdir dir="${gameservice.output.dir}"/>
+    <javac destdir="${gameservice.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gameservice}/javac">
+      <compilerarg line="${compiler.args.gameservice}"/>
+      <bootclasspath refid="gameservice.module.bootclasspath"/>
+      <classpath refid="gameservice.module.production.classpath"/>
+      <src refid="gameservice.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gameservice"/>
+    </javac>
+    
+    <copy todir="${gameservice.output.dir}">
+      <fileset dir="${module.gameservice.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gameservice.tests" depends="compile.module.gameservice.production" description="compile module gameservice; test classes" unless="skip.tests">
+    <mkdir dir="${gameservice.testoutput.dir}"/>
+    <javac destdir="${gameservice.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.gameservice}/javac">
+      <compilerarg line="${compiler.args.gameservice}"/>
+      <bootclasspath refid="gameservice.module.bootclasspath"/>
+      <classpath refid="gameservice.module.classpath"/>
+      <src refid="gameservice.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gameservice"/>
+    </javac>
+    
+    <copy todir="${gameservice.testoutput.dir}">
+      <fileset dir="${module.gameservice.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.gameservice" description="cleanup module">
+    <delete dir="${gameservice.output.dir}"/>
+    <delete dir="${gameservice.testoutput.dir}"/>
+  </target>
+  
+  <property name="gwt.compiler.output.gameservice" value="${module.gameservice.basedir}/GWTCompilerOutput_gameservice"/>
+  
+  <!-- Run GWT compiler for GWT module ${gwt.module.name} -->
+  <target name="run.gwt.compiler.gameservice" description="Run GWT compiler">
+    <java fork="true" jvm="${module.jdk.bin.gameservice}/java" classname="com.google.gwt.dev.Compiler">
+      <jvmarg line="-Xmx256m"/>
+      <classpath>
+        <pathelement location="${gwt.sdk.home.gameservice}/gwt-dev.jar"/>
+        <path refid="gameservice.module.sourcepath"/>
+        <path refid="domain.module.sourcepath"/>
+        <path refid="gameservice.module.classpath"/>
+      </classpath>
+      <arg value="-logLevel"/>
+      <arg value="WARN"/>
+      <arg value="-war"/>
+      <arg value="${gwt.compiler.output.gameservice}"/>
+      <arg value="-style"/>
+      <arg value="DETAILED"/>
+      <arg value="${gwt.module.name}"/>
+    </java>
+  </target>
+  
+  <target name="compile.gwt.gameservice" depends="compile.module.gameservice" description="Compile all GWT modules in module gameservice">
+    <property name="gwt.sdk.home.gameservice" value="${gwt.sdk.home}"/>
+  </target>
+</project>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_uitest" default="compile.module.uitest">
+  <dirname property="module.uitest.basedir" file="${ant.file.module_uitest}"/>
+  
+  <property name="module.jdk.home.uitest" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.uitest" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.uitest" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.uitest" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="uitest.output.dir" value="${module.uitest.basedir}/../out/production/uitest"/>
+  <property name="uitest.testoutput.dir" value="${module.uitest.basedir}/../out/test/uitest"/>
+  
+  <path id="uitest.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="uitest.module.production.classpath">
+    <path refid="${module.jdk.classpath.uitest}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+  </path>
+  
+  <path id="uitest.runtime.production.module.classpath">
+    <pathelement location="${uitest.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  <path id="uitest.module.classpath">
+    <path refid="${module.jdk.classpath.uitest}"/>
+    <pathelement location="${uitest.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+  </path>
+  
+  <path id="uitest.runtime.module.classpath">
+    <pathelement location="${uitest.testoutput.dir}"/>
+    <pathelement location="${uitest.output.dir}"/>
+    <path refid="library.gwt-user.classpath"/>
+    <pathelement location="${ui.testoutput.dir}"/>
+    <pathelement location="${ui.output.dir}"/>
+    <pathelement location="${domain.testoutput.dir}"/>
+    <pathelement location="${domain.output.dir}"/>
+    <path refid="library.testng.classpath"/>
+    <path refid="library.gwt-slf4j.classpath"/>
+    <path refid="library.javax.inject-2.2.0.classpath"/>
+    <path refid="library.spring-data-mongodb-1.5.0.build-snapshot.classpath"/>
+    <path refid="library.jcl-over-slf4j-1.7.6.classpath"/>
+    <path refid="library.logback-classic-1.1.1.classpath"/>
+    <path refid="library.logback-core-1.1.1.classpath"/>
+    <path refid="library.slf4j-api-1.7.6.classpath"/>
+    <path refid="library.spring-4.1.0.build-snapshot.classpath"/>
+    <path refid="library.org.hibernate:hibernate-entitymanager:4.3.5.final.classpath"/>
+    <path refid="library.postgresql-9.3-1101.jdbc41.classpath"/>
+    <path refid="library.aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.javax.persistence:persistence-api:1.0-rev-1.classpath"/>
+    <path refid="library.org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.spring-data-commons-1.8.0.build-snapshot.classpath"/>
+    <path refid="library.spring-data-jpa-1.6.0.build-snapshot.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.11.jar"/>
+    <path refid="library.testfx-3.1.2.classpath"/>
+    <pathelement location="${game.testoutput.dir}"/>
+    <pathelement location="${game.output.dir}"/>
+    <pathelement location="${gwt-jfxbeans.testoutput.dir}"/>
+    <pathelement location="${gwt-jfxbeans.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.validation-api-1.1.0.final.classpath"/>
+    <path refid="library.gwt-dev.classpath"/>
+    <path refid="library.guice-3.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.uitest">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.uitest">
+    <patternset refid="excluded.from.module.uitest"/>
+  </patternset>
+  
+  <path id="uitest.module.sourcepath">
+    <dirset dir="${module.uitest.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.uitest" depends="compile.module.uitest.production,compile.module.uitest.tests" description="Compile module uitest"/>
+  
+  <target name="compile.module.uitest.production" depends="compile.module.ui,compile.module.domain,compile.module.gwt-jfxbeans" description="Compile module uitest; production classes">
+    <mkdir dir="${uitest.output.dir}"/>
+    <javac destdir="${uitest.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.uitest}/javac">
+      <compilerarg line="${compiler.args.uitest}"/>
+      <bootclasspath refid="uitest.module.bootclasspath"/>
+      <classpath refid="uitest.module.production.classpath"/>
+      <src refid="uitest.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.uitest"/>
+    </javac>
+    
+    <copy todir="${uitest.output.dir}">
+      <fileset dir="${module.uitest.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.uitest.tests" depends="compile.module.uitest.production" description="compile module uitest; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.uitest" description="cleanup module">
+    <delete dir="${uitest.output.dir}"/>
+    <delete dir="${uitest.testoutput.dir}"/>
+  </target>
+  
+  <property name="gwt.compiler.output.uitest" value="${module.uitest.basedir}/GWTCompilerOutput_uitest"/>
+  
+  <!-- Run GWT compiler for GWT module ${gwt.module.name} -->
+  <target name="run.gwt.compiler.uitest" description="Run GWT compiler">
+    <java fork="true" jvm="${module.jdk.bin.uitest}/java" classname="com.google.gwt.dev.Compiler">
+      <jvmarg line="-Xmx1024m"/>
+      <classpath>
+        <pathelement location="${gwt.sdk.home.uitest}/gwt-dev.jar"/>
+        <path refid="uitest.module.sourcepath"/>
+        <path refid="ui.module.sourcepath"/>
+        <path refid="domain.module.sourcepath"/>
+        <path refid="game.module.sourcepath"/>
+        <path refid="gwt-jfxbeans.module.sourcepath"/>
+        <path refid="uitest.module.classpath"/>
+      </classpath>
+      <arg value="-logLevel"/>
+      <arg value="WARN"/>
+      <arg value="-war"/>
+      <arg value="${gwt.compiler.output.uitest}"/>
+      <arg value="-style"/>
+      <arg value="DETAILED"/>
+      <arg value="${gwt.module.name}"/>
+    </java>
+  </target>
+  
+  <target name="compile.gwt.uitest" depends="compile.module.uitest" description="Compile all GWT modules in module uitest">
+    <property name="gwt.sdk.home.uitest" value="${gwt.sdk.home}"/>
+    <antcall target="run.gwt.compiler.uitest">
+      <param name="gwt.module.name" value="us.heptet.magewars.uitest.uiTest.UiTest"/>
+    </antcall>
+  </target>
+</project>

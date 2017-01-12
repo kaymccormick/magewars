@@ -1,0 +1,374 @@
+package us.heptet.magewars.domain.persistence;
+
+/*
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.tool.schema.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import us.heptet.magewars.domain.game.*;
+import us.heptet.magewars.domain.game.AttackSpell;
+import us.heptet.magewars.domain.game.Card;
+import us.heptet.magewars.domain.game.Conjuration;
+import us.heptet.magewars.domain.game.Creature;
+import us.heptet.magewars.domain.game.Enchantment;
+import us.heptet.magewars.domain.game.Equipment;
+import us.heptet.magewars.domain.game.Incantation;
+import us.heptet.magewars.domain.game.Mage;
+import us.heptet.magewars.domain.persistence.config.DomainPersistenceConfig;
+import us.heptet.magewars.domain.persistence.jpa.*;
+import us.heptet.magewars.domain.persistence.jpa.Game;
+import us.heptet.magewars.domain.persistence.jpa.Player;
+import us.heptet.magewars.domain.persistence.jpa.SpellBook;
+import us.heptet.magewars.domain.persistence.jpa.Zone;
+import us.heptet.magewars.domain.persistence.repository.*;
+
+import javax.inject.Inject;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.util.EnumSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+
+@ContextConfiguration(classes = {DomainPersistenceConfig.class})
+//        locations = {"classpath:persistenceconfig.xml", "classpath:domainconfig.xml"})
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+
+public class ITCase extends AbstractTestNGSpringContextTests {
+    private Logger logger = LoggerFactory.getLogger(ITCase.class);
+    @Autowired
+    GameRepository gameRepository;
+
+    @Autowired
+    ZoneRepository zoneRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    CardRepository cardRepository;
+    @Autowired
+    MageRepository mageRepository;
+    @Autowired
+    ArenaObjectRepository arenaObjectRepository;
+    @Autowired
+    SpellBookRepository spellBookRepository;
+
+    @Autowired
+    CardSet cardSet;
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        //LoggerContext loggerContext = (LoggerContext)LoggerFactory.getILoggerFactory();
+        //StatusPrinter.print(loggerContext);
+
+    }
+
+
+    @AfterMethod
+    public void tearDown() throws Exception {
+
+    }
+
+//    @Autowired
+//    Set<Mage> mageSet;
+
+    */
+/*@Test
+    public void testCreateMages()
+    {
+        mageRepository.deleteAll();
+        for(Mage mage:mageSet)
+        {
+            us.heptet.magewars.domain.persistence.jpa.Mage pMage = createMage(mage);
+        }
+
+    }
+*//*
+
+
+    @Test
+    public void testDeleteAllGames() throws Exception {
+        gameRepository.deleteAll();
+    }
+
+    private us.heptet.magewars.domain.persistence.jpa.Mage createMage(Mage mage) {
+        us.heptet.magewars.domain.persistence.jpa.Mage pMage = new us.heptet.magewars.domain.persistence.jpa.Mage();
+        pMage.setCardName(mage.getName());
+        pMage.setCardEnumName(mage.getCardEnum().name());
+
+        mageRepository.save(pMage);
+        return pMage;
+    }
+
+    @Test
+    //@Transactional
+    public void testCreateCards()
+    {
+        spellBookRepository.deleteAll();
+        arenaObjectRepository.deleteAll();
+        gameRepository.deleteAll();
+        cardRepository.deleteAll();
+        for(Card card:cardSet.getCards())
+        {
+            us.heptet.magewars.domain.persistence.jpa.Card pCard = null;
+            pCard = cardRepository.findOneByCardEnumName(card.getCardEnum().name());
+            if(pCard != null)
+            {
+                assert false : "card exists " + card.getCardEnum();
+            }
+
+            if(card instanceof Creature)
+            {
+                us.heptet.magewars.domain.persistence.jpa.Creature pCreature = new us.heptet.magewars.domain.persistence.jpa.Creature();
+                pCard = pCreature;
+            }
+            else if(card instanceof Enchantment)
+            {
+                us.heptet.magewars.domain.persistence.jpa.Enchantment pEnchantment = new us.heptet.magewars.domain.persistence.jpa.Enchantment();
+                pCard = pEnchantment;
+            } else if(card instanceof Equipment)
+            {
+                us.heptet.magewars.domain.persistence.jpa.Equipment pEquipment = new us.heptet.magewars.domain.persistence.jpa.Equipment();
+                pCard = pEquipment;
+            } else if(card instanceof Incantation)
+            {
+                us.heptet.magewars.domain.persistence.jpa.Incantation pIncantation = new us.heptet.magewars.domain.persistence.jpa.Incantation();
+                pCard = pIncantation;
+
+            } else if(card instanceof Conjuration)
+            {
+                us.heptet.magewars.domain.persistence.jpa.Conjuration pConjuration= new us.heptet.magewars.domain.persistence.jpa.Conjuration();
+                pCard = pConjuration;
+
+            }else if(card instanceof AttackSpell)
+            {
+                us.heptet.magewars.domain.persistence.jpa.AttackSpell pAttack = new us.heptet.magewars.domain.persistence.jpa.AttackSpell();
+                pCard = pAttack;
+
+            }
+            if(pCard != null) {
+                pCard.setCardEnumName(card.getCardEnum().name());
+                pCard.setCardName(card.getCardName());
+                cardRepository.save(pCard);
+            }
+        }
+
+
+    }
+
+    @Test(groups="broken")
+    public void testCreateDefaultSpellbooks() throws Exception {
+        spellBookRepository.deleteAll();
+        mageRepository.deleteAll();
+        Mage[] mageSet = new Mage[2];
+        for(Mage mage:mageSet) {
+            SpellBookDefinition def = mage.getSpellBookDefinition();
+            us.heptet.magewars.domain.persistence.jpa.Mage pMage = createMage(mage);//mageRepository.findOneByCardEnumName(mage.getCardEnum().name());
+
+            us.heptet.magewars.domain.persistence.jpa.SpellBook pSpellbook = new us.heptet.magewars.domain.persistence.jpa.SpellBook();
+            pSpellbook.setSpellbookName("Default " + mage.getName());
+            pSpellbook.setMage(pMage);
+            for(Map.Entry<CardEnum, Integer> entry:def.getSpellbookMap().entrySet()) {
+                us.heptet.magewars.domain.persistence.jpa.Card pCard =
+                        cardRepository.findOneByCardEnumName(entry.getKey().name());
+            assert pCard != null : entry.getKey().toString();
+                pSpellbook.getCards().put(pCard, entry.getValue());
+            }
+
+            spellBookRepository.save(pSpellbook);
+            pMage.setDefaultSpellbook(pSpellbook);
+            mageRepository.save(pMage);
+        }
+
+
+
+    }
+
+    @Test
+    public void testArenaObject()
+    {
+        int i = 1;
+        logger.trace("here {}", i++);
+        Iterable<ArenaObject> arenaObjects = arenaObjectRepository.findAll();
+        Iterator<ArenaObject> iterator = arenaObjects.iterator();
+        logger.trace("here {}", i++);
+        ArenaObject o;
+        while(iterator.hasNext())
+        {
+            logger.trace("here {}", i++);
+            o = iterator.next();
+            logger.trace("here {}", i++);
+            logger.debug("arenaobject = {}", o.getArenaObjectId());
+            logger.trace("here {}", i++);
+        }
+        logger.trace("here {}", i++);
+    }
+
+    @Test(dependsOnMethods = "testCreateCards", groups={"broken"})
+    @Transactional
+    public void testGame() throws Exception {
+        // need to populate cards first
+        gameRepository.deleteAll();
+        Game game = new Game();
+
+        Iterable<User> users = userRepository.findAll();
+        Iterator<User> userI = users.iterator();
+        User user1 = null, user2 = null;
+        if(userI.hasNext()) {
+            user1 = userI.next();
+        }
+        else
+        {
+            user1 = new User();
+            user1.setUserName("testuser1");
+            userRepository.save(user1);
+        }
+        if(userI.hasNext()) {
+            user2 = userI.next();
+        }
+        else
+        {
+            user2 = new User();
+            user2.setUserName("testuser2");
+            userRepository.save(user2);
+        }
+
+        game.setName("Game created by testGame method.");
+        game.setCreatedByUser(user1);
+        game.setMinPlayers(2);
+        game.setMaxPlayers(2);
+        game.setStatus(GameStatus.PLAYING);
+
+        Player player1 = new Player();
+        player1.setPlayerSlot(0);
+        player1.setGame(game);
+        player1.setMage((us.heptet.magewars.domain.persistence.jpa.Mage)cardRepository.findOneByCardEnumName("BEASTMASTER"));
+        player1.setUser(user1);
+
+        Player player2 = new Player();
+        player2.setPlayerSlot(1);
+        player2.setGame(game);
+        player2.setMage((us.heptet.magewars.domain.persistence.jpa.Mage)cardRepository.findOneByCardEnumName("WARLOCK"));
+        player2.setUser(user2);
+
+        Iterator<us.heptet.magewars.domain.persistence.jpa.Card> cardIterator = cardRepository.findAll().iterator();
+
+        logger.info("player 1 = {}", player1);
+        logger.info("player 1 = {}", player2);
+
+        game.getPlayers().add(player1);
+        game.getPlayers().add(player2);
+        gameRepository.save(game);
+
+//        game = gameRepository.findOne(game.getGameId());
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                Zone z = new Zone(game, j, i);
+                //game.getZones().put(new ZoneSpec(i, j), z);
+                //gameRepository.save(game);
+                zoneRepository.save(z);
+
+
+
+
+                */
+/*ArenaObject arenaObject = new ArenaObject();
+                arenaObject.setZone(z);
+                arenaObject.setCard(cardIterator.next());
+                arenaObject.setPlayer(0);
+
+                z.getArenaObjects().add(arenaObject);
+                *//*
+
+            }
+        }
+        //gameRepository.save(game);
+
+        assert (game.getGameId() != 0);
+    }
+
+    @Test(dependsOnMethods = "testGame", groups={"broken"})
+    @Transactional(readOnly = true)
+    public void testGameZones() throws Exception {
+        Game game = gameRepository.findAll().iterator().next();
+        for(ZoneSpec key:game.getZones().keySet())
+        {
+            logger.info("{} {} {}", key.getCol(), key.getRow(), game.getZones().get(key));
+        }
+
+    }
+
+    @Test
+    public void testSpellBook()
+    {
+        java.util.Random random = new java.util.Random();
+        us.heptet.magewars.domain.persistence.jpa.SpellBook spellBook = new us.heptet.magewars.domain.persistence.jpa.SpellBook();
+        Iterator<us.heptet.magewars.domain.persistence.jpa.Card> cards = cardRepository.findAll().iterator();
+        for(int i = 0; i < 10; i++)
+        {
+            us.heptet.magewars.domain.persistence.jpa.Card card = cards.next();
+            spellBook.getCards().put(card,  random.nextInt(3) + 1);
+        }
+        spellBookRepository.save(spellBook);
+
+
+    }
+
+
+    @Inject
+    DataSource dataSource;
+
+
+    public void testDDL() throws Exception {
+
+        MetadataSources metadata = new MetadataSources(
+                new StandardServiceRegistryBuilder()
+                        .applySetting("hibernate.dialect", "org.hibernate.dialect.HSQLDialect")
+                        .applySetting("javax.persistence.schema-generation-connection", dataSource.getConnection())
+                        .build());
+
+// [...] adding annotated classes to metadata here...\
+        metadata.addAnnotatedClass(ArenaObject.class);
+        metadata.addAnnotatedClass(ArenaObjectPK.class);
+        metadata.addAnnotatedClass(AttackSpell.class);
+        metadata.addAnnotatedClass(Card.class);
+        metadata.addAnnotatedClass(Conjuration.class);
+        metadata.addAnnotatedClass(Creature.class);
+        metadata.addAnnotatedClass(Enchantment.class);
+        metadata.addAnnotatedClass(Equipment.class);
+        metadata.addAnnotatedClass(Game.class);
+        metadata.addAnnotatedClass(GameState.class);
+        metadata.addAnnotatedClass(Incantation.class);
+        metadata.addAnnotatedClass(us.heptet.magewars.domain.persistence.jpa.Mage.class);
+        metadata.addAnnotatedClass(Player.class);
+        metadata.addAnnotatedClass(PlayerPK.class);
+        metadata.addAnnotatedClass(Round.class);
+        metadata.addAnnotatedClass(SpellBook.class);
+        metadata.addAnnotatedClass(User.class);
+        metadata.addAnnotatedClass(UserConnection.class);
+        metadata.addAnnotatedClass(UserConnectionPK.class);
+        metadata.addAnnotatedClass(Zone.class);
+        metadata.addAnnotatedClass(ZonePK.class);
+        metadata.addAnnotatedClass(ZoneSpec.class);
+
+        new SchemaExport().setOutputFile("out.sql").create
+                (EnumSet.of(org.hibernate.tool.schema.TargetType.DATABASE), metadata.buildMetadata());
+
+    }
+
+
+}
+*/

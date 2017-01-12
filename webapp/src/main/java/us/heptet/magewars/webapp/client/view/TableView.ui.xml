@@ -1,0 +1,16 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p="urn:import:us.heptet.magewars.webapp.client">
+    <g:FlowPanel>
+    <g:FlowPanel ui:field="playersFlowPanel"/>
+        <g:FlowPanel ui:field="playerJoinPanel" visible="false">
+            <g:HTMLPanel><p>You've joined the game.</p></g:HTMLPanel>
+            </g:FlowPanel>
+
+        <g:Button debugId="joinGameButton" ui:field="joinGameButton">Join Game</g:Button>
+        <g:Button debugId="startGameButton" ui:field="startGameButton">Start Game</g:Button>
+
+    </g:FlowPanel>
+
+
+</ui:UiBinder>

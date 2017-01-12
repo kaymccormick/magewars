@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<atmosphere-handlers>
+    <!--
+    <atmosphere-handler context-root="/webapp/atmosphere/rpc"
+                        class-name="us.heptet.magewars.atmosphere.GwtRpcAtmosphereHandler">
+        <property name="heartbeat" value="20000"/>
+    </atmosphere-handler>
+    <atmosphere-handler context-root="/atmosphere"
+                        class-name="us.heptet.magewars.webapp.server.atmosphere.AtmosphereHandler">
+        <property name="heartbeat" value="20000"/>
+
+                        </atmosphere-handler>
+-->
+</atmosphere-handlers>

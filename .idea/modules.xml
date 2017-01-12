@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/game-integration-test/game-integration-test.iml" filepath="$PROJECT_DIR$/game-integration-test/game-integration-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain/magewars-domain.iml" filepath="$PROJECT_DIR$/domain/magewars-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain-persistence/magewars-domain-persistence.iml" filepath="$PROJECT_DIR$/domain-persistence/magewars-domain-persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game/magewars-game.iml" filepath="$PROJECT_DIR$/game/magewars-game.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gameclient/magewars-gameclient.iml" filepath="$PROJECT_DIR$/gameclient/magewars-gameclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gameserver/magewars-gameserver.iml" filepath="$PROJECT_DIR$/gameserver/magewars-gameserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gameservice/magewars-gameservice.iml" filepath="$PROJECT_DIR$/gameservice/magewars-gameservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jfxapp/magewars-jfx.iml" filepath="$PROJECT_DIR$/jfxapp/magewars-jfx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jfxapp-integration-test/magewars-jfxapp-integration-test.iml" filepath="$PROJECT_DIR$/jfxapp-integration-test/magewars-jfxapp-integration-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selenium/magewars-selenium.iml" filepath="$PROJECT_DIR$/selenium/magewars-selenium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/magewars-test/magewars-test.iml" filepath="$PROJECT_DIR$/magewars-test/magewars-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/magewars-ui.iml" filepath="$PROJECT_DIR$/ui/magewars-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui-integration-test/magewars-ui-integration-test.iml" filepath="$PROJECT_DIR$/ui-integration-test/magewars-ui-integration-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui-jfx/magewars-ui-jfx.iml" filepath="$PROJECT_DIR$/ui-jfx/magewars-ui-jfx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webapp/magewars-webapp.iml" filepath="$PROJECT_DIR$/webapp/magewars-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pom.iml" filepath="$PROJECT_DIR$/pom.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- testwebapp logback.xml -->
+
+    <timestamp key="timestamp" datePattern=""/>
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/testwebapp-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="HEPTETOUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>logs/testwebapp-heptet-log.txt</file>
+
+        <encoder>
+            <pattern>%d{HHmmss} %3.-3thread %.-1level %36.-36logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="trace"></logger>
+    <logger name="org.springframework.web.context.support.StandardServletEnvironment" level="info"/>
+    <logger name="org.springframework.context.annotation" level="trace"/>
+    <logger name="org.springframework.context.annotation.ClassPathBeanDefinitionScanner" level="info"/>
+    <logger name="org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader" level="trace"/>
+    <logger name="org.springframework.context.annotation.ConfigurationClassPostProcessor" level="info"/>
+    <logger name="org.springframework.context.annotation.ConfigurationClassEnhancer" level="info"/>
+    <logger name="org.springframework.beans.factory.xml" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.DefaultDocumentLoader" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info"/>
+    <logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info"/>
+    <logger name="org.springframework.core.env.StandardEnvironment" level="info"/>
+    <logger name="org.hibernate" level="warn"/>
+    <logger name="us.heptet" level="trace">
+            <appender-ref ref="HEPTETOUTFILE"/>
+    </logger>
+    <logger name="org.apache.http.wire" level="info"/>
+    <root level="trace">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>
+

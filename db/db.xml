@@ -1,0 +1,290 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="jade (generated)" id="1469943284912-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="arenaobject_arenaobjectid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="card_cardid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="game_gameid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="gamestate_gamestateidid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="player_playerid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="round_roundid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="spellbook_spellbookid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="user_userid_seq"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="appuser">
+            <column name="userid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="arenaobject">
+            <column name="arenaobjectid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="player" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_cardid" type="INT"/>
+            <column name="col" type="INT"/>
+            <column name="gameid" type="INT"/>
+            <column name="row" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="card">
+            <column name="disc" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cardid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cardenumname" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cardname" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="game">
+            <column name="gameid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="maxplayers" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minplayers" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="status" type="INT"/>
+            <column name="userid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="gamemage">
+            <column name="gameid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cardid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="gamestate">
+            <column name="gameid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_gameid" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="magespellbook">
+            <column name="defaultspellbook_spellbookid" type="INT"/>
+            <column name="cardid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-16" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="player">
+            <column name="playerid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="playerslot" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gameid" type="INT"/>
+            <column name="mageid" type="INT"/>
+            <column name="spellbook_spellbookid" type="INT"/>
+            <column name="userid" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="round">
+            <column name="roundid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roundnum" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gameid" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="spellbook">
+            <column name="spellbookid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="spellbookname" type="VARCHAR(255)"/>
+            <column name="createdbyuser_userid" type="INT"/>
+            <column name="mage_cardid" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="spellbookcard">
+            <column name="spellbook" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="copies" type="INT"/>
+            <column name="card" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="userconnection">
+            <column name="providerid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provideruserid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accesstoken" type="VARCHAR(255)"/>
+            <column name="displayname" type="VARCHAR(255)"/>
+            <column name="expiretime" type="numeric(19, 2)"/>
+            <column name="imageurl" type="VARCHAR(255)"/>
+            <column name="profileurl" type="VARCHAR(255)"/>
+            <column name="rank" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refreshtoken" type="VARCHAR(255)"/>
+            <column name="secret" type="VARCHAR(255)"/>
+            <column name="userid" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-21" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="zone">
+            <column name="col" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gameid" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-22" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="userid" constraintName="appuser_pkey" tableName="appuser"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-23" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="arenaobjectid" constraintName="arenaobject_pkey" tableName="arenaobject"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="cardid" constraintName="card_pkey" tableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="gameid" constraintName="game_pkey" tableName="game"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="gameid, cardid" constraintName="gamemage_pkey" tableName="gamemage"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="gameid" constraintName="gamestate_pkey" tableName="gamestate"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-28" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="cardid" constraintName="magespellbook_pkey" tableName="magespellbook"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-29" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="playerid" constraintName="player_pkey" tableName="player"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-30" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="roundid" constraintName="round_pkey" tableName="round"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-31" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="spellbookid" constraintName="spellbook_pkey" tableName="spellbook"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-32" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="spellbook, card" constraintName="spellbookcard_pkey" tableName="spellbookcard"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-33" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="providerid, provideruserid" constraintName="userconnection_pkey" tableName="userconnection"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-34" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="col, gameid, row" constraintName="zone_pkey" tableName="zone"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-35" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="username" constraintName="uk418sr20kh207kb22viuyno1" tableName="appuser"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-36" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="cardenumname" constraintName="ukd4v2elghj4qva14w9ms9jq3bv" tableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-37" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="userid" baseTableName="userconnection" constraintName="fk6xiw6jgnkoj7a4i7jed0ib0mk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="username" referencedTableName="appuser"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-38" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="spellbook_spellbookid" baseTableName="player" constraintName="fk7f7636elmgoyrk7ihij9h86og" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="spellbookid" referencedTableName="spellbook"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-39" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="mageid" baseTableName="player" constraintName="fk7wp5vuief3jmanwpeqxcuwvda" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="cardid" referencedTableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-40" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="createdbyuser_userid" baseTableName="spellbook" constraintName="fk9b80v2a4nwfebm4je69srns5b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="userid" referencedTableName="appuser"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-41" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="card_cardid" baseTableName="arenaobject" constraintName="fkacyixg7xgu1h0i1mm347efyo3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="cardid" referencedTableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-42" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="mage_cardid" baseTableName="spellbook" constraintName="fkb11s5fi6ou2joxb820b3fs5p2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="cardid" referencedTableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-43" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="gameid" baseTableName="round" constraintName="fkbqfw37b42ql7vala8xeda8yn2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="gameid" referencedTableName="game"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-44" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="defaultspellbook_spellbookid" baseTableName="magespellbook" constraintName="fke5ado2ie2vqfcvg7oia0776tq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="spellbookid" referencedTableName="spellbook"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-45" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="cardid" baseTableName="gamemage" constraintName="fkfiwt6k4ijk7u594sexvg3jqjp" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="cardid" referencedTableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-46" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="card" baseTableName="spellbookcard" constraintName="fkgh54kph3o2n3rcj45fvsw9esp" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="cardid" referencedTableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-47" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="gameid" baseTableName="player" constraintName="fkgp790pgc9jgc9f8v8ag9xcdtr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="gameid" referencedTableName="game"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-48" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="cardid" baseTableName="magespellbook" constraintName="fkjngtcfh18pdrhe1u69m6k0msn" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="cardid" referencedTableName="card"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-49" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="gameid" baseTableName="gamemage" constraintName="fkkm89jmqe4fk2d16vhux0f2fu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="gameid" referencedTableName="game"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-50" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="game_gameid" baseTableName="gamestate" constraintName="fklovck96u6txhpj1xlygcd2cow" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="gameid" referencedTableName="game"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-51" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="col,gameid,row" baseTableName="arenaobject" constraintName="fkon8gebaodqswhkh43j2ubqxmm" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="col,gameid,row" referencedTableName="zone"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-52" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="userid" baseTableName="game" constraintName="fkqud6pw19tvsboff8p2gr1k9tg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="userid" referencedTableName="appuser"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-53" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="userid" baseTableName="player" constraintName="fkr86h62uqi8n54m8s2mrxd02sv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="userid" referencedTableName="appuser"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-54" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="spellbook" baseTableName="spellbookcard" constraintName="fkt02atpl9sltg6y00jhmsfyucf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="spellbookid" referencedTableName="spellbook"/>
+    </changeSet>
+    <changeSet author="jade (generated)" id="1469943284912-55" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="gameid" baseTableName="zone" constraintName="fktbkohrngh63q3r7k9fm78xmwc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="gameid" referencedTableName="game"/>
+    </changeSet>
+</databaseChangeLog>

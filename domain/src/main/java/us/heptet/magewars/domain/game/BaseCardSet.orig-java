@@ -1,0 +1,188 @@
+package us.heptet.magewars.game;
+
+import us.heptet.magewars.game.action.AcquiredActionTarget;
+import us.heptet.magewars.game.action.ActionSpeed;
+import us.heptet.magewars.game.action.ActionTarget;
+import us.heptet.magewars.game.attack.*;
+import us.heptet.magewars.game.cards.CardEnum;
+import util.Function;
+
+import java.util.*;
+
+public class BaseCardSet implements ICardSet {
+    private List<Card> cards;
+
+    private EnumMap<CardEnum, Card> cardMap;
+
+    public BaseCardSet()
+    {
+        Creature c  ;
+        cards = new ArrayList<Card>();
+        cardMap = new EnumMap<CardEnum, Card>(CardEnum.class);
+
+        cards.add(CardFactory.createCreature("Adramelech, Lord of Fire", 24, 3, 14,
+                EnumSet.of(Trait.FLYING, Trait.FLAME_IMMUNITY, Trait.LEGENDARY)
+        ).withDarkLevel(4).withFireLevel(2).withAttack(
+                        CardFactory.createAttack("Hellfire Scythe", ActionSpeed.QUICK, AttackType.MELEE, DamageType.FLAME, 6)
+                        .withEffect(AttackEffectType.BURN, 5, 9)
+                        .withEffect(AttackEffectType.TWICEBURN, 10, 12)
+                        .withTrait(AttackTrait.DEFROST))
+                .withAttack(CardFactory.createAttack("Hellfire Sweep", ActionSpeed.FULL, AttackType.RANGED, DamageType.FLAME, 4)
+                        .withEffect(AttackEffectType.BURN, 7, 10)
+                        .withEffect(AttackEffectType.TWICEBURN, 11, 12)
+                        .withTrait(AttackTrait.SWEEPING)
+                        .withTrait(AttackTrait.DEFROST))
+                .withAllSchools(true).withEnum(CardEnum.ADRAMELECH_LORD_OF_FIRE).withSpellSubtypes(SpellSubtype.DEMON)
+                .withJpgName("adramelech-lord-of-fire-core.jpg"));
+
+        cards.add(CardFactory.createCreature("Asyran Cleric", 5,
+                3, 14, CardFactory.createAttack("Staff", 2)).withAbility(
+                new CreatureAbility("Healing Light", ActionSpeed.FULL, 0, 1, 1))
+                .withEnum(CardEnum.ASYRAN_CLERIC).withDarkLevel(1).withSpellSubtypes(SpellSubtype.CLERIC)
+                .withJpgName("asyran-cleric-core.jpg"));
+        cards.add(CardFactory.createCreature("Bitterwood Fox", 5, 0, 5,
+                CardFactory.createAttack("Bite", 3), Trait.FAST).withEnum(CardEnum.BITTERWOOD_FOX).withNatureLevel(1)
+                .withSpellSubtypes(SpellSubtype.ANIMAL, SpellSubtype.CANINE).withJpgName("bitterwood-fox-core.jpg"));
+        // blue gremlin has a special 'pay 1 mana on activation ' to gain fast attribute and move = teleport
+        cards.add(CardFactory.createCreature("Blue Gremlin", 7,
+                new Defense(8), 1, 7, CardFactory.createAttack("Claws", 3).withPiercing(1), Trait.PEST)
+                .withEnum(CardEnum.BLUE_GREMLIN)
+                .withSpellSubtypes(SpellSubtype.GREMLIN)
+                .withArcaneLevel(2)
+                .withJpgName("blue-gremlin-core.jpg"));
+        cards.add(CardFactory.createCreature("Brogan Bloodstone", 15, 4, 11,
+                CardFactory.createAttack("Varpal Blade", 4).withPiercing(3).withUnavoidable(true), Trait.LEGENDARY)
+                .withLightning(2).withEnum(CardEnum.BROGAN_BLOODSTONE).withHolyLevel(4)
+                .withSpellSubtypes(SpellSubtype.KNIGHT, SpellSubtype.SOLDIER)
+                .withJpgName("brogan-bloodstone-core.jpg"));
+
+        cards.add(CardFactory.createCreature("Cervere, The Forest Shadow", 15, new Defense(8), 2, 11,
+                CardFactory.createAttack("Claws & Bite", 4), EnumSet.of(Trait.FAST, Trait.LEGENDARY, Trait.ELUSIVE))
+                .withEnum(CardEnum.CERVERE_THE_FOREST_SHADOW).withNatureLevel(4)
+                .withSpellSubtypes(SpellSubtype.ANIMAL, SpellSubtype.CAT)
+                .withJpgName("cervere-the-forest-shadow-core.jpg"));
+        cards.add(CardFactory.createCreature("Dark Pact Slayer", 13, 2, 14,
+                CardFactory.createAttack("Hellsword", 4).withPiercing(2)).withFlame(-2).withEnum(CardEnum.DARK_PACT_SLAYER)
+        .withDarkLevel(3).withSpellSubtypes(SpellSubtype.DEMON)
+                .withJpgName("dark-pact-slayer-core.jpg"));
+        cards.add(CardFactory.createCreature("Darkfenne Bat", 5, 0, 14, CardFactory.createAttack("Diseased Bite", 2)
+                .withEffect(AttackEffectType.ROT, 9, 12), Trait.FLYING).withEnum(CardEnum.DARKFENNE_BAT).withDarkLevel(1)
+                .withSpellSubtypes(SpellSubtype.ANIMAL, SpellSubtype.BAT));
+        cards.add(CardFactory.createCreature("Darkfenne Hydra", 16, 1, 15,
+                CardFactory.createAttack("Snapping Bite", 4).withTrait(AttackTrait.COUNTERSTRIKE), Trait.SLOW)
+                .withAttack(CardFactory.createAttack("Triple Bite", ActionSpeed.FULL, AttackType.MELEE, 3)
+                        .withTrait(AttackTrait.TRIPLESTRIKE))
+                .withRegenerate(2)
+                .withEnum(CardEnum.DARKFENNE_HYDRA)
+                .withSpellSubtypes(SpellSubtype.SERPENT)
+        .withArcaneLevel(4));
+        cards.add(CardFactory.createCreature("Dwarf Kriegsbiel", 11, 3, 9, CardFactory.createAttack("Chop", 4))
+                .withAttack(CardFactory.createAttack("Sweeping Attack", ActionSpeed.FULL, AttackType.MELEE, 4).withTrait(AttackTrait.SWEEPING))
+                .withLightning(2).withEnum(CardEnum.DWARF_KRIEGSBIEL).withWarLevel(3)
+                .withSpellSubtypes(SpellSubtype.DWARF, SpellSubtype.SOLDIER));
+        // need a way to represent "no armor allowed"
+        //cards.add(new Creature("Earth Elemental", 20, SpellLevel.Earth(5), 0, 35,
+        cards.add(CardFactory.createCreature("Goblin Builder", 5, 0, 6, CardFactory.createAttack("Hammer", 2), EnumSet.of(Trait.PEST, Trait.FAMILIAR))
+                .withAbility(new CreatureAbility("Repair", ActionSpeed.QUICK, 0, 0, 0))
+                .withEnum(CardEnum.GOBLIN_BUILDER)
+
+        //.withCastLimitation((Card testCard) -> testCard.getSpellType() == SpellType.CONJURATION &&
+          //  testCard.isCorporeal() && (testCard.getTargetType() == TargetType.ZONE || testCard.getTargetType() == TargetType.ZONE_BORDER)));
+        );
+        cards.add(CardFactory.createEnchantment(CardEnum.AGONY, "Agony", 2, 3, TargetType.CREATURE).withDarkLevel(1).withSpellSubtypes(SpellSubtype.CURSE));
+        // +1 melee
+        cards.add(CardFactory.createEnchantment(CardEnum.BEAR_STRENGTH, "Bear Strength", 2, 3, TargetType.CREATURE).withNatureLevel(1));
+        cards.add(CardFactory.createEnchantment(CardEnum.BLOCK, "Block", 2, 2, TargetType.CORPOREAL_CREATURE).withRange(0, 2).withMindLevel(1).withSpellSubtypes(SpellSubtype.FORCE, SpellSubtype.DEFENSE));
+        cards.add(CardFactory.createEnchantment(CardEnum.BULL_ENDURANCE, "Bull Endurance", 2, 3, TargetType.LIVING_CREATURE).withNatureLevel(1));
+        cards.add(CardFactory.createEnchantment(CardEnum.CHAINS_OF_AGONY, "Chains of Agony", 2, 1, TargetType.CREATURE).withDarkLevel(1).withSpellSubtypes(SpellSubtype.CURSE));
+        cards.add(CardFactory.createEnchantment(CardEnum.CHARM, "Charm", 2, 0, TargetType.NONMAGE_CREATURE).withMindLevel(2).withSpellSubtypes(SpellSubtype.PSYCHIC, SpellSubtype.CONTROL));
+        cards.add(CardFactory.createEnchantment(CardEnum.CHEETAH_SPEED, "Cheetah Speed", 2, 3, TargetType.LIVING_CREATURE).withNatureLevel(1));
+        cards.add(CardFactory.createEnchantment(CardEnum.CIRCLE_OF_FIRE, "Circle of Fire", 2, 4, TargetType.CORPOREAL_CREATURE).withFireLevel(2).withSpellSubtypes(SpellSubtype.FLAME, SpellSubtype.BARRIER));
+        cards.add(CardFactory.createEnchantment(CardEnum.COBRA_REFLEXES, "Cobra Reflexes", 2, 5, TargetType.LIVING_CREATURE).withMageBind(2).withNatureLevel(2).withSpellSubtypes(SpellSubtype.DEFENSE));
+
+        //cards.add(new Enchantment(CardEnum.))
+          //      null, false, null, null));
+
+        cards.add(CardFactory.createConjuration(CardEnum.ANIMAL_KINSHIP, "Animal Kinship", 8, 3, 7,
+                EnumSet.of(Trait.ZONE_EXCLUSIVE, Trait.BEASTMASTER_ONLY)).withNatureLevel(2));
+
+        cards.add(CardFactory.createConjuration(CardEnum.BATTLE_FORGE, "Battle Forge", 8, 4, 6,
+                EnumSet.of(Trait.SPAWNPOINT, Trait.ZONE_EXCLUSIVE, Trait.FLAME_IMMUNITY))
+                .withHydro(3).withWarLevel(1).withFireLevel(1).withAllSchools(true)
+                //1.8 .withCastLimitation((Card spellCard) -> spellCard.getSpellType() == SpellType.EQUIPMENT));
+        );
+        cards.add(CardFactory.createConjuration(CardEnum.DEATHLOCK, "Deathlock", 9, 2, 9,
+                EnumSet.of(Trait.ZONE_EXCLUSIVE, Trait.EPIC)).withDarkLevel(2));
+        cards.add(CardFactory.createConjuration(CardEnum.MANA_CRYSTAL, "Mana Crystal", 5, 2, 6, EnumSet.of(Trait.ZONE_EXCLUSIVE, Trait.FLAME_IMMUNITY)).withArcaneLevel(1));
+        cards.add(CardFactory.createConjuration(CardEnum.MANA_FLOWER, "Mana Flower", 5, 0, 6, EnumSet.of(Trait.ZONE_EXCLUSIVE, Trait.LIVING, Trait.HYDRO_IMMUNITY)).withNatureLevel(1).withFlame(2));
+        cards.add(CardFactory.createConjuration(CardEnum.MANA_SIPHON, "Mana Siphon", 12, null, 9, EnumSet.of(Trait.ZONE_EXCLUSIVE, Trait.INCORPOREAL, Trait.EPIC)).withArcaneLevel(3));
+
+        cards.add(CardFactory.createEquipment(CardEnum.ARCANE_RING, "Arcane Ring", 2, EquipmentLocation.RING).withArcaneLevel(1));
+        cards.add(CardFactory.createEquipment(CardEnum.BEARSKIN, "Bearskin", 6, EquipmentLocation.CHEST_PIECE).withNatureLevel(1));
+        cards.add(CardFactory.createEquipment(CardEnum.CROWN_OF_PROTECTION, "Crown of Protection", 1, EquipmentLocation.HELMET).withHolyLevel(1));
+        cards.add(CardFactory.createEquipment(CardEnum.DANCING_SCIMITAR, "Dancing Scimitar", 5, EquipmentLocation.NONE)
+                .withMindLevel(2).withAttack(CardFactory.createAttack("Flying Slash", 3)).withUpkeep(1).withTrait(Trait.AUTONOMOUS));
+        cards.add(CardFactory.createEquipment(CardEnum.DAWNBREAKER_RING, "Dawnbreaker Ring", 3, EquipmentLocation.RING).withHolyLevel(1));
+        cards.add(CardFactory.createEquipment(CardEnum.DEFENSE_RING, "Defense Ring", 3, EquipmentLocation.RING).withWarLevel(1));
+        cards.add(CardFactory.createEquipment(CardEnum.DEFLECTION_BRACERS, "Deflection Bracers", 6, EquipmentLocation.GLOVES).withWarLevel(1));
+        cards.add(CardFactory.createEquipment(CardEnum.DEMONHIDE_ARMOR, "Demonhide Armor", 8, EquipmentLocation.CHEST_PIECE).withDarkLevel(2));
+        cards.add(CardFactory.createEquipment(CardEnum.DRAGONSCALE_HAUBERK, "Dragonscale Hauberk", 6, EquipmentLocation.CHEST_PIECE).withFireLevel(1));
+        cards.add(CardFactory.createIncantation(CardEnum.BANISH, "Banish", 14, TargetType.NONMAGE_CREATURE).withArcaneLevel(3).withSpellSubtypes(SpellSubtype.TELEPORT));
+        cards.add(CardFactory.createIncantation(CardEnum.BATTLE_FURY, "Battle Fury", 5, TargetType.CORPOREAL_CREATURE).withWarLevel(1).withSpellSubtypes(SpellSubtype.COMMAND));
+        cards.add(CardFactory.createIncantation(CardEnum.CALL_OF_THE_WILD, "Call of the Wild", 4, TargetType.ARENA).withNatureLevel(1));
+        cards.add(CardFactory.createIncantation(CardEnum.CHARGE, "Charge", 4, TargetType.CORPOREAL_CREATURE).withWarLevel(1).withSpellSubtypes(SpellSubtype.COMMAND));
+        cards.add(CardFactory.createIncantation(CardEnum.DISPEL, "Dispel", 0, TargetType.REVEALED_ENCHANTMENT).withArcaneLevel(1).withSpellSubtypes(SpellSubtype.METAMAGIC));
+        cards.add(CardFactory.createIncantation(CardEnum.DISSOLVE, "Dissolve", 0, TargetType.MAGE_EQUIPMENT).withWaterLevel(1).withSpellSubtypes(SpellSubtype.ACID));
+        cards.add(CardFactory.createIncantation(CardEnum.EARTHQUAKE, "Earthquake", 9)
+                .withActionTarget(
+                new ActionTarget(new ActionTarget.isGameElementType(GameElementType.ZONE)).withRange(new Range(0, 1))
+                .additionalActionTarget(
+                        new ActionTarget(new ActionTarget.isGameElementType(GameElementType.ZONE),
+                                new Function<AcquiredActionTarget, GameElement>() {
+                                    @Override
+                                    public GameElement apply(AcquiredActionTarget acquiredActionTarget) {
+                                        return acquiredActionTarget.getPreviousAcquiredActionTarget().getTarget();
+                                    }
+                                })
+                                .isOptional().withRange(new Range(1, 1)))));
+
+
+        cards.add(CardFactory.createIncantation(CardEnum.SHIFT_ENCHANTMENT, "Shift Enchantment", 0)
+                .withActionTarget(
+                        new ActionTarget(new ActionTarget.TestGameElement() {
+                            @Override
+                            public boolean test(GameElement gameElement) {
+                                return gameElement.getGameElementType() == GameElementType.ENCHANTMENT;
+                            }
+                        })
+                                .withRange(new Range(0, 2))
+                                .additionalActionTarget(new ActionTarget(new ActionTarget.TestGameElement() {
+                                    @Override
+                                    public boolean test(GameElement gameElement) {
+                                        return true;
+                                    }
+                                }).withRange(new Range(0, 2)))));
+
+        // Earthquake is more complex with multiple targets.
+
+
+        for(Card thisCard:cards)
+        {
+
+           cardMap.put(thisCard.getCardEnum(), thisCard);
+        }
+    }
+
+    @Override
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public EnumMap<CardEnum, Card> getCardMap() {
+        return cardMap;
+    }
+
+    public void setCardMap(EnumMap<CardEnum, Card> cardMap) {
+        this.cardMap = cardMap;
+    }
+}

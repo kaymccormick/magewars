@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <!-- domain-persistence logback test logback.xml -->
+    <property resource="logback-test.properties"/>
+
+    <property resource="global-logback.properties"/>
+
+    <include resource="logback/properties.xml"/>
+
+    <property resource="domain-persistence-logback.properties"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned by default the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${stdoutLevel}</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="OUTFILE" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <file>${logdir}/${logfileprefix}domain-persistence${logfilesuffix}</file>
+
+        <encoder>
+            <pattern>${longdate} [%thread] %-5level %logger{360} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <include resource="logback/spring-quiet.xml"/>
+
+<!--
+    <logger name="org.hibernate" level="warn"/>
+    <logger name="org.hibernate.SQL" level="warn">
+    </logger>
+    -->
+    <logger name="org.apache.http.wire" level="trace"/>
+    <root level="trace">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="OUTFILE"/>
+    </root>
+</configuration>

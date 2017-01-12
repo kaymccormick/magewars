@@ -1,0 +1,15 @@
+.idea/workspace.xml
+bin
+\#*#
+screenshot*.png
+*~
+**/*~
+out
+**/target
+mvn.out
+out.txt
+logs/*
+*/logs/*
+*/overlays
+*/war
+war
